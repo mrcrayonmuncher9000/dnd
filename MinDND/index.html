@@ -4,7 +4,7 @@
 <head>
     <link rel="stylesheet" href="style.css">
     <script src="https://kit.fontawesome.com/5ec147f5d1.js" crossorigin="anonymous"></script>
-    
+
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -71,7 +71,7 @@
 
                     <label for="diceCount">Number of dice:</label>
                     <input type="number" id="diceCount" name="diceCount" value="1" min="1">
-            
+
                     <label for="diceModifier">Modifier:</label>
                     <input type="number" id="diceModifier" name="diceModifier" value="0">
 
@@ -96,7 +96,7 @@
                         <option value="Wisdom">Wisdom</option>
                         <option value="Charisma">Charisma</option>
                     </select>
-            
+
                 </span>
 
             </span>
@@ -105,27 +105,100 @@
 
                 <span id="btoptTop">
                     <button id="diceResetButton">Reset Dice <i class="fa-solid fa-arrows-rotate"></i> </button>
-                    <button onclick="rollDice()" id="diceRollButton">Roll Dice <i class="fa-solid fa-dice"></i> </button>
+                    <button onclick="rollDice()" id="diceRollButton">Roll Dice <i class="fa-solid fa-dice"></i>
+                    </button>
                 </span>
-            
+
                 <span id="btoptBottom">
                     <button id="AdddiceButton">Add to Quick Action <i class="fa-regular fa-square-plus"></i> </button>
                 </span>
 
             </span>
 
-            <span id="dicelogCont"> 
+            <span id="dicelogCont">
 
                 <p> Dice Log </p>
 
                 <span id="diceLog"> </span>
-                
-            </span>
 
+            </span>
 
         </span>
 
+        <span class="contBG" id="MSPlayer">
+            <span id="topMS">
+                <p> <i class="fa-solid fa-music"></i> Music and SoundBoard Player </p>
+                <span>
+                    <button id="minBtn" title="Minimize popup"> <i class="fa-solid fa-minus"></i> </button>
+                    <button id="closeBtn" title="Close popup"> <i class="fa-solid fa-xmark"></i> </button>
+                </span>
+            </span>
+            <span id="midM">
+
+                <p> Music Player </p>
+
+                <p style="font-style: italic; font-weight: lighter; align-self: center;"> Placeholder Name for Music
+                    Playing </p>
+
+                <span id="time-audio">
+
+                    <p style="font-style: italic; font-weight: lighter;"> 0:00 </p>
+
+                    <input type="range" value="0" id="audio-slider">
+
+                    <p style="font-style: italic; font-weight: lighter;"> 0:00 </p>
+
+                </span>
+
+                <span id="MControls" style="align-self: center;">
+                    <button class="Mbtn"> <i class="fa-solid fa-repeat"></i> </button>
+                    <button class="Mbtn"> <i class="fa-solid fa-backward"></i> </button>
+                    <button class="Mbtn"> <i class="fa-solid fa-circle-play"></i></button>
+                    <button class="Mbtn"> <i class="fa-solid fa-forward"></i> </button>
+                    <button class="Mbtn"> <i class="fa-solid fa-sliders"></i> </button>
+                </span>
+
+                <button id="mPlaylist"> Music Playlist <i class="fa-solid fa-volume"></i> </button>
+            </span>
+
+            <hr>
+
+            <span id="Splayer">
+                <p> SoundBoard Player </p>
+                <span id="TrackFav">
+                    <button id="SBtrack"> <i class="fa-regular fa-circle-pause"></i> Clipped Audio 01 <i
+                            class="fa-solid fa-star"></i> </button>
+                    <button id="SBtrack"> <i class="fa-regular fa-circle-pause"></i> Clipped Audio 02 <i
+                            class="fa-solid fa-star"></i> </button>
+                    <button id="SBtrack"> <i class="fa-regular fa-circle-pause"></i> Clipped Audio 03 <i
+                            class="fa-solid fa-star"></i> </button>
+                    <button id="SBtrack"> <i class="fa-regular fa-circle-pause"></i> Clipped Audio 04 <i
+                            class="fa-solid fa-star"></i> </button>
+                    <button id="SBtrack"> <i class="fa-regular fa-circle-pause"></i> Clipped Audio 05 <i
+                            class="fa-solid fa-star"></i> </button>
+                    <button id="SBtrack"> <i class="fa-regular fa-circle-pause"></i> Clipped Audio 06 <i
+                            class="fa-solid fa-star"></i> </button>
+                </span>
+
+                <button id="sTrack"> SoundBoard Tracks <i class="fa-solid fa-volume"></i> </button>
+
+            </span>
+        </span>
+
     </aside>
+
+    <section style="width: 100%; border: solid 1px; border-radius: 0.5vw; position: absolute; bottom: 1.5vw; display: flex; justify-content: center;">
+        <div id="quickAction">
+            <button> <i class="fa-solid fa-plus"></i> </button>
+            <button> <i class="fa-solid fa-plus"></i> </button>
+            <button> <i class="fa-solid fa-plus"></i> </button>
+            <button> <i class="fa-solid fa-plus"></i> </button>
+            <button> <i class="fa-solid fa-plus"></i> </button>
+            <button> <i class="fa-solid fa-plus"></i> </button>
+            <button> <i class="fa-solid fa-plus"></i> </button>
+            <button> <i class="fa-solid fa-plus"></i> </button>
+        </div>
+    </section>
 
     <script src="index.js"></script>
 </body>
