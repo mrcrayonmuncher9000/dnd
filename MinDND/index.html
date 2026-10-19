@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/5ec147f5d1.js" crossorigin="anonymous"></script>
+    
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MinDND VTT</title>
+</head>
+
+<body>
+
+    <div id="controlBar">
+
+        <span class="contBG" id="mainBar">
+            <button class="controlButton"> <i class="fa-solid fa-circle-user"></i> </button>
+            <button class="controlButton"> <i class="fa-solid fa-address-book"></i> </button>
+            <button class="controlButton"> <i class="fa-solid fa-comments"></i> </button>
+            <button class="controlButton"> <i class="fa-solid fa-book"></i> </button>
+            <button class="controlButton"> <i class="fa-solid fa-dice-d20"></i> </button>
+            <button class="controlButton"> <i class="fa-solid fa-music"></i> </button>
+        </span>
+
+        <span class="contBG" id="assetManager">
+            <button class="controlButton"> <i class="fa-solid fa-magnifying-glass"></i> </button>
+            <button class="controlButton"> <i class="fa-regular fa-circle-question"></i> </button>
+            <div id="vs"></div>
+            <button class="controlButton"> <i class="fa-solid fa-map"></i> </button>
+            <button class="controlButton"> <i class="fa-solid fa-suitcase"></i> </button>
+            <button class="controlButton"> <i class="fa-solid fa-horse"></i> </button>
+            <button class="controlButton"> <i class="fa-solid fa-person"></i> </button>
+            <button class="controlButton"> <i class="fa-brands fa-delicious"></i> </button>
+        </span>
+
+        <span class="contBG" id="toolBar">
+            <button class="controlButton"> <i class="fa-solid fa-hand"></i> </button>
+            <button class="controlButton"> <i class="fa-solid fa-object-ungroup"></i> </button>
+            <button class="controlButton"> <i class="fa-solid fa-cloud"></i> </button>
+            <button class="controlButton"> <i class="fa-solid fa-burst"></i> </button>
+            <button class="controlButton"> <i class="fa-solid fa-t"></i> </button>
+            <button class="controlButton"> <i class="fa-solid fa-arrow-rotate-left"></i> </button>
+            <button class="controlButton"> <i class="fa-solid fa-arrow-rotate-right"></i> </button>
+        </span>
+
+    </div>
+
+
+    <aside>
+
+        <span class="contBG" id="diceRoller">
+
+            <p> <i class="fa-solid fa-dice-d20"></i> Dice Roller</p>
+
+            <span id="diceOptions">
+                <button class="diceButton" id="d2">D2</button>
+                <button class="diceButton" id="d4">D4</button>
+                <button class="diceButton" id="d6">D6</button>
+                <button class="diceButton" id="d8">D8</button>
+                <button class="diceButton" id="d10">D10</button>
+                <button class="diceButton" id="d12">D12</button>
+                <button class="diceButton" id="d20">D20</button>
+                <button class="diceButton" id="d100">D100</button>
+            </span>
+
+            <span id="dicemodCont">
+
+                <span id="dmcontLeft">
+
+                    <label for="diceCount">Number of dice:</label>
+                    <input type="number" id="diceCount" name="diceCount" value="1" min="1">
+            
+                    <label for="diceModifier">Modifier:</label>
+                    <input type="number" id="diceModifier" name="diceModifier" value="0">
+
+                </span>
+
+                <span id="dmcontRight">
+
+                    <label for="diceAdvantage">Advantage/Disadvantage:</label>
+                    <select id="diceAdvantage" name="diceAdvantage">
+                        <option value="none">None</option>
+                        <option value="advantage">Advantage</option>
+                        <option value="disadvantage">Disadvantage</option>
+                    </select>
+
+                    <label for="diceAttributes">Attributes:</label>
+                    <select id="diceAttributes" name="diceAttributes">
+                        <option value="none">None</option>
+                        <option value="Strength">Strength</option>
+                        <option value="Dexterity">Dexterity</option>
+                        <option value="Constitution">Constitution</option>
+                        <option value="Intelligence">Intelligence</option>
+                        <option value="Wisdom">Wisdom</option>
+                        <option value="Charisma">Charisma</option>
+                    </select>
+            
+                </span>
+
+            </span>
+
+            <span id="diceBTOPT">
+
+                <span id="btoptTop">
+                    <button id="diceResetButton">Reset Dice <i class="fa-solid fa-arrows-rotate"></i> </button>
+                    <button onclick="rollDice()" id="diceRollButton">Roll Dice <i class="fa-solid fa-dice"></i> </button>
+                </span>
+            
+                <span id="btoptBottom">
+                    <button id="AdddiceButton">Add to Quick Action <i class="fa-regular fa-square-plus"></i> </button>
+                </span>
+
+            </span>
+
+            <span id="dicelogCont"> 
+
+                <p> Dice Log </p>
+
+                <span id="diceLog"> </span>
+                
+            </span>
+
+
+        </span>
+
+    </aside>
+
+    <script src="index.js"></script>
+</body>
+
+</html>

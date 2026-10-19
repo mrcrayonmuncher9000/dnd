@@ -1,0 +1,252 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 0.6vw;
+    font-weight: bold;
+}
+
+body {
+    background: linear-gradient(to bottom, #1a1a1a, #000000) no-repeat center center fixed;
+}
+
+/* 
+   vvv - Top Bar / Control Bar over here - vvv
+*/
+
+#controlBar {
+    position: none;
+    margin: 0;
+    padding: 0.5vw;
+    width: auto;
+    height: auto;
+
+    display: grid;
+    grid-template-columns: auto auto auto;
+    column-gap: 5vw;
+    justify-content: space-between;
+}
+
+.contBG {
+    margin: 0;
+    padding: 0.5vw;
+    width: auto;
+    height: auto;
+
+    border-radius: 0.4vw;
+    background-color: white;
+}
+
+.controlButton {
+    border: none;
+    border-radius: 0.4vw;
+    background-color: transparent;
+    color: black;
+
+    cursor: pointer;
+}
+
+.controlButton svg {
+    font-size: 1vw;
+}
+
+.controlButton:hover {
+    color: #686868;
+}
+
+#mainBar {
+    display: flex;
+    gap: 0.8vw;
+    align-items: center;
+    justify-content: center;
+}
+
+#assetManager {
+    background-color: black;
+
+    display: flex;
+    gap: 0.8vw;
+    align-items: center;
+    justify-content: center;
+}
+
+#vs {
+    margin: 0;
+    padding: 0;
+    width: 1px;
+    height: 20px;
+
+    background-color: white;
+}
+
+#assetManager button {
+    border: none;
+    border-radius: 0.4vw;
+    background-color: transparent;
+    color: white;
+}
+
+#assetManager button:hover {
+    color: #d3d3d3;
+}
+
+#toolBar {
+    display: flex;
+    gap: 0.8vw;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 
+   vvv - UI Functions Windows down here - vvv
+
+   Dice Roller Window:
+*/
+
+#diceRoller {
+    margin: 0.5vw;
+    padding: 0.8vw;
+    width: 27vw;
+    height: 25vw;
+
+    background-color: #3636368e;
+    color: white;
+
+    display: flex;
+    flex-direction: column;
+    gap: 0.5vw;
+}
+
+#diceRoller p {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5vw;
+}
+
+#diceOptions {
+    margin: 0;
+    padding: 0.5vw;
+    width: auto;
+    height: auto;
+
+    display: grid;
+    gap: 0.5vw;
+    grid-template-columns: repeat(8, auto);
+    justify-content: space-between;
+}
+
+.diceButton {
+    margin: 0;
+    padding: 0.8vw 1.2vw;
+    width: 0;
+    height: 0;
+
+    border-radius: 0.4vw;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-weight: bold;
+}
+
+.diceButton::after 
+
+#dicemodCont {
+    margin: 0;
+    padding: 0;
+    width: auto;
+    height: auto;
+
+    display: grid;
+    grid-template-columns: repeat(2, 12vw);
+    justify-content: space-between;
+}
+
+#dmcontLeft {
+    margin: 0;
+    padding: 0.3vw;
+    width: auto;
+    height: auto;
+
+    display: grid;
+    gap: 0.6vw;
+    grid-template-rows: repeat(2, auto);
+}
+
+#dmcontLeft input {
+    margin: 0;
+    padding: 0.3vw 0.5vw;
+    width: auto;
+    height: auto;
+
+    border-radius: 0.4vw;
+
+    font-weight: normal;
+}
+
+#dmcontRight {
+    margin: 0;
+    padding: 0.3vw;
+    width: auto;
+    height: auto;
+
+    display: grid;
+    gap: 0.6vw;
+    grid-template-rows: repeat(2, auto);
+}
+
+#dmcontRight select {
+    margin: 0;
+    padding: 0.3vw 0.5vw;
+    width: auto;
+    height: auto;
+
+    border-radius: 0.4vw;
+
+    font-weight: normal;
+}
+
+#diceBTOPT {
+    margin: 0;
+    padding: 0.9vw 0.5vw;
+    width: auto;
+    height: auto;
+
+    display: flex;
+    flex-direction: column;
+    gap: 0.8vw;
+}
+
+#btoptTop {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    justify-content: space-between;
+}
+
+#btoptTop button {
+    margin: 0;
+    padding: 0.4vw 0.6vw;
+    width: auto;
+    height: auto;
+
+    border-radius: 0.3vw;
+}
+
+#btoptBottom Button {
+    margin: 0;
+    padding: 0.4vw 0.6vw;
+    width: 10vw;
+    height: auto;
+
+    border-radius: 0.3vw;
+
+    background-color: #1a1a1a;
+    color: white;
+}
+
+/* 
+  ^^^ - End of Dice Roller Window ^^^
+*/
