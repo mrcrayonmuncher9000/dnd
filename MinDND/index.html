@@ -306,65 +306,20 @@
 
                     <div id="MG" class="ADcontent active">
 
-                        <div class="contentGrid">
+                        <form class="mapUploadForm" id="customMapForm">
+                            <label for="customMapName">Map name</label>
+                            <input id="customMapName" name="mapName" type="text" maxlength="80"
+                                placeholder="Enter a map name" required>
+                            <label for="customMapFile">Map image</label>
+                            <input id="customMapFile" name="mapImage" type="file" accept="image/*" required>
+                            <button type="submit">
+                                Add custom map <i class="fa-solid fa-plus"></i>
+                            </button>
+                            <p id="customMapStatus" role="status" aria-live="polite"></p>
+                        </form>
 
-                            <div class="cardContainer">
-
-                                <div class="cardImage"></div>
-
-                                <div class="cardHeader">
-
-                                    <p>Placeholder Title Card</p>
-
-                                    <div class="cardOptions">
-
-                                        <button> <i class="fa-solid fa-pen"></i> </button>
-                                        <button> <i class="fa-solid fa-ellipsis-vertical"></i> </button>
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                            <div class="cardContainer">
-
-                                <div class="cardImage"></div>
-
-                                <div class="cardHeader">
-
-                                    <p>Placeholder Title Card</p>
-
-                                    <div class="cardOptions">
-
-                                        <button> <i class="fa-solid fa-pen"></i> </button>
-                                        <button> <i class="fa-solid fa-ellipsis-vertical"></i> </button>
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                            <div class="cardContainer">
-
-                                <div class="cardImage"></div>
-
-                                <div class="cardHeader">
-
-                                    <p>Placeholder Title Card</p>
-
-                                    <div class="cardOptions">
-
-                                        <button> <i class="fa-solid fa-pen"></i> </button>
-                                        <button> <i class="fa-solid fa-ellipsis-vertical"></i> </button>
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-
+                        <div class="contentGrid" id="customMapGrid" aria-live="polite">
+                            <p class="mapEmptyState">Your custom maps will appear here.</p>
                         </div>
 
                     </div>

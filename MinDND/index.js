@@ -241,3 +241,152 @@ function dragElement(elmnt) {
     header.addEventListener("pointerup", stopDragging);
     header.addEventListener("pointercancel", stopDragging);
 }
+
+    const customMapForm = document.getElementById("customMapForm");
+    const customMapGrid = document.getElementById("customMapGrid");
+    const customMapStatus = document.getElementById("customMapStatus");
+    const customMapName = document.getElementById("customMapName");
+    const customMapFile = document.getElementById("customMapFile");
+    const customMapDatabaseName = "mindnd-custom-maps";
+    let customMapObjectUrls = [];
+
+    function openCustomMapDatabase() {
+        return new Promise((resolve, reject) => {
+            const request = indexedDB.open(customMapDatabaseName, 1);
+
+            request.onupgradeneeded = () => {
+                request.result.createObjectStore("maps", { keyPath: "id" });
+            };
+            request.onsuccess = () => resolve(request.result);
+            request.onerror = () => reject(request.error);
+        });
+    }
+
+    async function useCustomMapStore(mode, operation) {
+        const database = await openCustomMapDatabase();
+
+        return new Promise((resolve, reject) => {
+            const transaction = database.transaction("maps", mode);
+            const request = operation(transaction.objectStore("maps"));
+            let result;
+
+            request.onsuccess = () => {
+                result = request.result;
+            };
+            request.onerror = () => {
+                database.close();
+                reject(request.error);
+            };
+            transaction.oncomplete = () => {
+                database.close();
+                resolve(result);
+            };
+            transaction.onerror = () => {
+                database.close();
+                reject(transaction.error);
+            };
+            transaction.onabort = () => {
+                database.close();
+                reject(transaction.error);
+            };
+        });
+    }
+
+    function setCustomMapStatus(message) {
+        customMapStatus.textContent = message;
+    }
+
+    async function renderCustomMaps() {
+        const maps = await useCustomMapStore("readonly", store => store.getAll());
+
+        customMapObjectUrls.forEach(url => URL.revokeObjectURL(url));
+        customMapObjectUrls = [];
+        customMapGrid.replaceChildren();
+
+        if (maps.length === 0) {
+            const emptyState = document.createElement("p");
+            emptyState.className = "mapEmptyState";
+            emptyState.textContent = "Your custom maps will appear here.";
+            customMapGrid.append(emptyState);
+            return;
+        }
+
+        maps.sort((first, second) => second.createdAt - first.createdAt);
+        maps.forEach(map => {
+            const card = document.createElement("div");
+            card.className = "cardContainer";
+
+            const preview = document.createElement("img");
+            preview.className = "cardImage customMapPreview";
+            preview.alt = `${map.name} map preview`;
+            const objectUrl = URL.createObjectURL(map.image);
+            customMapObjectUrls.push(objectUrl);
+            preview.src = objectUrl;
+
+            const header = document.createElement("div");
+            header.className = "cardHeader";
+
+            const name = document.createElement("p");
+            name.textContent = map.name;
+
+            const options = document.createElement("div");
+            options.className = "cardOptions";
+
+            const deleteButton = document.createElement("button");
+            deleteButton.type = "button";
+            deleteButton.setAttribute("aria-label", `Remove ${map.name}`);
+            deleteButton.innerHTML = '<i class="fa-solid fa-trash"></i>';
+            deleteButton.addEventListener("click", async () => {
+                try {
+                    await useCustomMapStore("readwrite", store => store.delete(map.id));
+                    await renderCustomMaps();
+                    setCustomMapStatus(`${map.name} removed.`);
+                } catch (error) {
+                    console.error("Could not remove custom map:", error);
+                    setCustomMapStatus("Could not remove this map. Please try again.");
+                }
+            });
+
+            options.append(deleteButton);
+            header.append(name, options);
+            card.append(preview, header);
+            customMapGrid.append(card);
+        });
+    }
+
+    customMapForm.addEventListener("submit", async event => {
+        event.preventDefault();
+
+        const name = customMapName.value.trim();
+        const image = customMapFile.files[0];
+
+        if (!name || !image) {
+            setCustomMapStatus("Enter a map name and choose an image.");
+            return;
+        }
+
+        if (!image.type.startsWith("image/")) {
+            setCustomMapStatus("Choose a valid image file for your map.");
+            return;
+        }
+
+        try {
+            await useCustomMapStore("readwrite", store => store.add({
+                id: crypto.randomUUID(),
+                name,
+                image,
+                createdAt: Date.now()
+            }));
+            customMapForm.reset();
+            await renderCustomMaps();
+            setCustomMapStatus(`${name} added to your map gallery.`);
+        } catch (error) {
+            console.error("Could not save custom map:", error);
+            setCustomMapStatus("Could not save this map in browser storage. Please try another image.");
+        }
+    });
+
+    renderCustomMaps().catch(error => {
+        console.error("Could not load custom maps:", error);
+        setCustomMapStatus("Could not load saved maps from browser storage.");
+    });
