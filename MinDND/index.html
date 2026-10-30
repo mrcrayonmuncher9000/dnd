@@ -16,7 +16,9 @@
     <div id="controlBar">
 
         <span class="contBG" id="mainBar">
-            <button class="controlButton" onclick="openUI('UI')"> <i class="fa-solid fa-circle-user"></i> </button>
+            <button class="controlButton" onclick="openUI('profileAccount')"> <i class="fa-solid fa-circle-user"></i> </button>
+            <button class="controlButton" onclick="openUI('Settings')"> <i class="fa-solid fa-gear"></i>
+            </button>
             <button class="controlButton" onclick="openUI('campaignParty')"> <i class="fa-solid fa-address-book"></i>
             </button>
             <button class="controlButton" onclick="openUI('chatLogs')"> <i class="fa-solid fa-comments"></i> </button>
@@ -706,6 +708,155 @@
 
     <section>
 
+        <div class="popupUI" id="profileAccount">
+
+            <div class="header">
+                <div style="display: flex; flex-direction: row; gap: 0.4vw;">
+                    <i class="fa-solid fa-circle-user"></i>
+                    <p> Profile Account </p>
+                </div>
+                <div style="display: flex; flex-direction: row; gap: 0.3vw;">
+                    <button class="minBtn" class="minBtn" aria-label="Minimize window"> <i
+                            class="fa-solid fa-minus"></i> </button>
+                    <button class="clsBtn" onclick="closeUI('profileAccount')" aria-label="Close window"> <i
+                            class="fa-solid fa-x"></i> </button>
+                </div>
+            </div>
+
+            <div class="content">
+
+                <div class="profileTop">
+                    <div class="profilePicture">
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 0.5vw;">
+                        <button> Change Picture </button>
+                        <button style="border-radius: 0.2vw; background-color: #1c1c1c; color: white;"> Delete Picture </button>
+                    </div>
+                </div>
+
+                <div class="accountInformation">
+                    <label>
+                        Username:
+                    </label>
+
+                    <input type="text" placeholder="Chandler The Siamese">
+                </div>
+
+                <div class="accountInformation">
+                    <label>
+                        Email:
+                    </label>
+
+                    <input type="text" placeholder="placholderemail123@email">
+                </div>
+
+                <div style="padding: 1vw 2vw 1vw 2vw; display: flex; flex-direction: row; justify-content: flex-end; gap: 0.5vw;">
+                        <button id="saveSettings"
+                            style="margin: 0; padding: 0.4vw 0.5vw; width: fit-content; display: flex; flex-direction: row; gap: 0.5vw; cursor: pointer;">
+                            Save Changes <i class="fa-solid fa-floppy-disk"></i> </button>
+                    </div>
+
+            </div>
+
+        </div>
+
+        <div class="popupUI" id="Settings">
+
+            <div class="header">
+                <div style="display: flex; flex-direction: row; gap: 0.4vw;">
+                    <i class="fa-solid fa-gear"></i>
+                    <p> Settings </p>
+                </div>
+                <div style="display: flex; flex-direction: row; gap: 0.3vw;">
+                    <button class="minBtn" class="minBtn" aria-label="Minimize window"> <i
+                            class="fa-solid fa-minus"></i> </button>
+                    <button class="clsBtn" onclick="closeUI('Settings')" aria-label="Close window"> <i
+                            class="fa-solid fa-x"></i> </button>
+                </div>
+            </div>
+
+            <div class="content">
+
+                <div class="settingsContent">
+                    <p>
+                        Control Bar
+                    </p>
+
+                    <div class="settingsContainer">
+
+                        <div class="settingInput">
+                            <div style="display: flex; flex-direction: row; gap: 0.5vw;">
+                                <i class="fa-solid fa-address-book"></i>
+                                <p>Campaign Party</p>
+                            </div>
+                            <input type="checkbox" data-ui="campaignParty">
+                        </div>
+
+                        <div class="settingInput">
+                            <div style="display: flex; flex-direction: row; gap: 0.5vw;">
+                                <i class="fa-solid fa-comments"></i>
+                                <p>Chat Log</p>
+                            </div>
+                            <input type="checkbox" data-ui="chatLogs">
+                        </div>
+
+                        <div class="settingInput">
+                            <div style="display: flex; flex-direction: row; gap: 0.5vw;">
+                                <i class="fa-solid fa-book"></i>
+                                <p>Journal Notes</p>
+                            </div>
+                            <input type="checkbox" data-ui="journalNotes">
+                        </div>
+
+                        <div class="settingInput">
+                            <div style="display: flex; flex-direction: row; gap: 0.5vw;">
+                                <i class="fa-solid fa-dice-d20"></i>
+                                <p>Dice Roller</p>
+                            </div>
+                            <input type="checkbox" data-ui="diceRoller">
+                        </div>
+
+                        <div class="settingInput">
+                            <div style="display: flex; flex-direction: row; gap: 0.5vw;">
+                                <i class="fa-solid fa-music"></i>
+                                <p>Music and SoundBoard Player</p>
+                            </div>
+                            <input type="checkbox" data-ui="msPlayer">
+                        </div>
+
+                    </div>
+
+                    <p>
+                        Media and Assets Manager
+                    </p>
+
+                    <div class="settingsContainer">
+
+                        <div class="settingInput">
+                            <div style="display: flex; flex-direction: row; gap: 0.5vw;">
+                                <i class="fa-solid fa-address-book"></i>
+                                <p>Assets Dashboard</p>
+                            </div>
+                            <input type="checkbox" data-ui="assetsDashboard">
+                        </div>
+
+                    </div>
+
+                    <div style="display: flex; flex-direction: row; justify-content: flex-end; gap: 0.5vw;">
+                        <button id="restoreSettings"
+                            style="margin: 0; padding: 0.4vw 0.5vw; width: fit-content; border-radius: 0.2vw; background-color: black; color: white; display: flex; flex-direction: row; gap: 0.5vw; cursor: pointer;">
+                            Restore Default Settings <i class="fa-solid fa-repeat"></i> </button>
+                        <button id="saveSettings"
+                            style="margin: 0; padding: 0.4vw 0.5vw; width: fit-content; display: flex; flex-direction: row; gap: 0.5vw; cursor: pointer;">
+                            Save Changes <i class="fa-solid fa-floppy-disk"></i> </button>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
         <div class="popupUI" id="campaignParty">
 
             <div class="header">
@@ -819,25 +970,25 @@
 
                             <p> My Entries </p>
 
-                            <div class="journalEntry" >
+                            <div class="journalEntry">
 
                                 <p>Session Zero Note Entry #1</p>
                                 <p>Session Zero Note Entry #2</p>
                                 <p>Session Zero Note Entry #3</p>
                                 <p>Session Zero Note Entry #4</p>
                                 <p>Session Zero Note Entry #5</p>
-            
+
                             </div>
 
                         </div>
-                        
+
                     </div>
 
                     <div id="JF" class="ADcontent active">
 
                         <div class="journalContent">
                             <p> My Folders </p>
-                            <div class="journalFolder" >
+                            <div class="journalFolder">
                                 <button>
                                     Folder 01
                                 </button>
@@ -856,24 +1007,24 @@
 
                             </div>
                         </div>
-                        
+
                     </div>
 
                     <div id="JSM" class="ADcontent active">
 
                         <div class="journalContent">
                             <p> Shared With Me </p>
-                            <div class="journalFolder" ></div>
+                            <div class="journalFolder"></div>
                         </div>
-                        
-                    </div>
 
                     </div>
 
                 </div>
 
-
             </div>
+
+
+        </div>
 
         </div>
 
@@ -967,8 +1118,6 @@
                 </div>
 
             </div>
-
-        </div>
 
         </div>
 

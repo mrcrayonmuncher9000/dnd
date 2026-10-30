@@ -1,3 +1,88 @@
+const defaultVisibleUIs = [
+    "campaignParty",
+    "chatLogs",
+    "journalNotes"
+];
+
+const uiCheckboxes = document.querySelectorAll(
+    ".settingInput input[data-ui]"
+);
+
+function loadUISettings() {
+
+    const savedSettings = localStorage.getItem("uiVisibility");
+
+    const visibleUIs = savedSettings
+        ? JSON.parse(savedSettings)
+        : defaultVisibleUIs;
+
+    uiCheckboxes.forEach(checkbox => {
+
+        const uiID = checkbox.dataset.ui;
+        const ui = document.getElementById(uiID);
+
+        const isVisible = visibleUIs.includes(uiID);
+
+        checkbox.checked = isVisible;
+
+        if (ui) {
+            ui.classList.toggle("visible", isVisible);
+        }
+
+    });
+
+}
+
+function saveUISettings() {
+
+    const visibleUIs = [];
+
+    uiCheckboxes.forEach(checkbox => {
+
+        const uiID = checkbox.dataset.ui;
+        const ui = document.getElementById(uiID);
+
+        if (checkbox.checked) {
+            visibleUIs.push(uiID);
+        }
+
+        if (ui) {
+            ui.classList.toggle("visible", checkbox.checked);
+        }
+
+    });
+
+    localStorage.setItem(
+        "uiVisibility",
+        JSON.stringify(visibleUIs)
+    );
+
+}
+
+document.getElementById("saveSettings").addEventListener(
+    "click",
+    saveUISettings
+);
+
+loadUISettings();
+
+document.getElementById("restoreSettings").addEventListener(
+    "click",
+    () => {
+
+        uiCheckboxes.forEach(checkbox => {
+
+            checkbox.checked = defaultVisibleUIs.includes(
+                checkbox.dataset.ui
+            );
+
+        });
+
+        saveUISettings();
+
+    }
+);
+
 const buttons = document.querySelectorAll(
     "#assetManager .controlButton"
 );
@@ -58,13 +143,21 @@ document.querySelectorAll(".popupUI").forEach(popup => {
 });
 
 function openUI(id) {
+
     const ui = document.getElementById(id);
-    if (ui) ui.style.display = "block";
+    if (!ui) return;
+
+    ui.classList.add("visible");
+
 }
 
 function closeUI(id) {
+
     const ui = document.getElementById(id);
-    if (ui) ui.style.display = "none";
+    if (!ui) return;
+
+    ui.classList.remove("visible");
+
 }
 
 function saveUIPosition(elmnt) {

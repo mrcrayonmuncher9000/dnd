@@ -121,7 +121,6 @@ body {
     left: 38vw;
 
     overflow-x: auto;
-    display: none;
 
     border-radius: 0.5vw;
     background-color: #08080899;
@@ -131,7 +130,6 @@ body {
     gap: 0.5vw;
     justify-content: left;
     align-items: center;
-    align-content: center;
 }
 
 .assetSlot {
@@ -167,6 +165,11 @@ body {
 
     resize: both;
     overflow: auto;
+}
+
+/* Windows enabled in Settings */
+.popupUI.visible {
+    display: block;
 }
 
 .popupUI .content {
@@ -213,6 +216,98 @@ body {
     border-radius: 0.2vw;
     background-color: transparent;
     color: #d8d8d8;
+
+    cursor: pointer;
+}
+
+.profileTop {
+    margin: 0;
+    padding: 2vw 2vw 2vw 2vw;
+
+    display: flex;
+    flex-direction: row;
+    gap: 1.5vw;
+    justify-content: start;
+    align-items: center;
+}
+
+.profileTop button {
+    padding: 0.4vw;
+}
+
+.profilePicture {
+    margin: 0;
+    padding: 2vw;
+
+    border-radius: 10%;
+    background-color: white;
+}
+
+.accountInformation {
+    margin: 0;
+    padding:  0 2vw 1vw 2vw;
+
+    display: flex;
+    flex-direction: column;
+    gap: 0.5vw;
+}
+
+.accountInformation input {
+    margin: 0;
+    padding: 0.5vw;
+    min-width: 18vw;
+
+    border-radius: 0.4vw;
+}
+
+.settingsContent {
+    margin: 0;
+    padding: 1vw 1.5vw;
+
+    display: flex;
+    flex-direction: column;
+    gap: 0.5vw;
+}
+
+.settingsContainer {
+    margin: 0;
+    padding: 1vw 2vw;
+
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    column-gap: 4vw;
+    row-gap: 0.5vw;
+    justify-content: sp;
+}
+
+.settingsContainer p {
+    font-weight: lighter;
+}
+
+.settingInput {
+    margin: 0;
+    padding: 0.5vw 0.7vw;
+    width: 15vw;
+
+    border-radius: 0.3vw;
+    border: none;
+    background-color: #040404;
+
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    justify-content: space-between;
+    align-items: center;
+}
+
+.settingInput input {
+    margin: 0;
+    padding: 0.3vw;
+
+    border-radius: 0.1vw;
+    border: solid 0.1vw #8a8a8a;
+    background-color: #040404;
+    accent-color: white;
+
 
     cursor: pointer;
 }
