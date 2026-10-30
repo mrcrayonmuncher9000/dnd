@@ -17,9 +17,10 @@
 
         <span class="contBG" id="mainBar">
             <button class="controlButton" onclick="openUI('UI')"> <i class="fa-solid fa-circle-user"></i> </button>
-            <button class="controlButton" onclick="openUI('campaignParty')"> <i class="fa-solid fa-address-book"></i> </button>
-            <button class="controlButton" onclick="openUI('UI')"> <i class="fa-solid fa-comments"></i> </button>
-            <button class="controlButton" onclick="openUI('UI')"> <i class="fa-solid fa-book"></i> </button>
+            <button class="controlButton" onclick="openUI('campaignParty')"> <i class="fa-solid fa-address-book"></i>
+            </button>
+            <button class="controlButton" onclick="openUI('chatLogs')"> <i class="fa-solid fa-comments"></i> </button>
+            <button class="controlButton" onclick="openUI('journalNotes')"> <i class="fa-solid fa-book"></i> </button>
             <button class="controlButton" onclick="openUI('diceRoller')"> <i class="fa-solid fa-dice-d20"></i> </button>
             <button class="controlButton" onclick="openUI('msPlayer')"> <i class="fa-solid fa-music"></i> </button>
         </span>
@@ -253,7 +254,7 @@
 
             <div class="content">
                 <div style="margin: 0; padding: 1vw 1vw;">
-                    <nav>
+                    <nav class="assetNav">
                         <button class="navButton" onclick="showContent('MG')"> Map Gallery </button>
                         <button class="navButton" onclick="showContent('IPC')"> Items and Props Collection </button>
                         <button class="navButton" onclick="showContent('MS')"> Mount Stables </button>
@@ -542,7 +543,7 @@
 
                             </div>
 
-                            
+
 
                         </div>
 
@@ -676,8 +677,9 @@
             </div>
 
             <div class="content">
-                
-                <div style="margin: 0; padding: 1vw 0.9vw; display: flex; flex-direction: column; gap: 0.5vw; justify-content: center;">
+
+                <div
+                    style="margin: 0; padding: 1vw 0.9vw; display: flex; flex-direction: column; gap: 0.5vw; justify-content: center;">
                     <p> Game Master </p>
 
                     <div class="memberName">
@@ -686,10 +688,242 @@
                     </div>
 
                     <p> Players </p>
-                </div>
+
+                    <div
+                        style="margin: 0 0 0.5vw 0; height: 10vw; overflow: scroll; display: flex; flex-direction: column; gap: 0.5vw; justify-content: start; align-items: center; align-content: center;">
+
+                        <div class="memberName">
+                            <div class="memberPhoto"></div>
+                            <p> Alt Elfor </p>
+                        </div>
+
+                        <div class="memberName">
+                            <div class="memberPhoto"></div>
+                            <p> MiaMiaOG </p>
+                        </div>
+
+                        <div class="memberName">
+                            <div class="memberPhoto"></div>
+                            <p> Hu Ion Bard </p>
+                        </div>
+
+                        <div class="memberName">
+                            <div class="memberPhoto"></div>
+                            <p> LiveLoveLaufey </p>
+                        </div>
+
+                        <div class="memberName">
+                            <div class="memberPhoto"></div>
+                            <p> Gin </p>
+                        </div>
+
+                    </div>
 
                 </div>
+
             </div>
+
+        </div>
+
+        <div class="popupUI" id="journalNotes">
+
+            <div class="header">
+                <div style="display: flex; flex-direction: row; gap: 0.4vw;">
+                    <i class="fa-solid fa-book"></i>
+                    <p> Journal Notes </p>
+                </div>
+                <div style="display: flex; flex-direction: row; gap: 0.3vw;">
+                    <button class="minBtn" class="minBtn" aria-label="Minimize window"> <i
+                            class="fa-solid fa-minus"></i> </button>
+                    <button class="clsBtn" onclick="closeUI('journalNotes')" aria-label="Close window"> <i
+                            class="fa-solid fa-x"></i> </button>
+                </div>
+
+            </div>
+
+            <div class="content">
+
+                <div
+                    style="margin: 0; padding: 0.5vw 0.5vw 0.7vw 0.5vw; width: 100%; background-color: #1c1c1c; display: flex; flex-direction: column; gap: 0.7vw;">
+                    <div style="width: 100%; display: flex; flex-direction: row; gap: 0.5vw;">
+                        <button
+                            style="margin: 0; padding: 0.4vw 0.6vw; min-width: 10vw; border-radius: 0.3vw; border: solid 0.1vw #fffefe; background-color: #f6f5f5; color: black; display: flex; flex-direction: row; justify-content: center; align-items: center; align-content: center; gap: 0.5vw; cursor: pointer;">
+                            Add New Entry <i class="fa-solid fa-square-plus"></i> </button>
+                        <button
+                            style="margin: 0; padding: 0.4vw 0.6vw; min-width: 10vw; border-radius: 0.3vw; border: solid 0.1vw #fffefe; background-color: #f6f5f5; color: black; display: flex; flex-direction: row; justify-content: center; align-items: center; align-content: center; gap: 0.5vw; cursor: pointer;">
+                            Add New Folder <i class="fa-solid fa-folder-plus"></i> </button>
+                    </div>
+                </div>
+
+                <div style="margin: 0; padding: 1vw 1vw;">
+                    <nav class="journalnav">
+                        <button class="navButton" onclick="showContent('JE')"> My Entries </button>
+                        <button class="navButton" onclick="showContent('JF')"> My folders </button>
+                        <button class="navButton" onclick="showContent('JSM')"> Shared Entries </button>
+                    </nav>
+                </div>
+
+                <hr>
+
+                <div
+                    style="margin: 0; padding: 1vw 0.9vw; display: flex; flex-direction: column; gap: 0.5vw; justify-content: center;">
+
+                    <div id="JE" class="ADcontent active">
+
+                        <div class="journalContent">
+
+                            <p> My Entries </p>
+
+                            <div class="journalEntry" >
+
+                                <p>Session Zero Note Entry #1</p>
+                                <p>Session Zero Note Entry #2</p>
+                                <p>Session Zero Note Entry #3</p>
+                                <p>Session Zero Note Entry #4</p>
+                                <p>Session Zero Note Entry #5</p>
+            
+                            </div>
+
+                        </div>
+                        
+                    </div>
+
+                    <div id="JF" class="ADcontent active">
+
+                        <div class="journalContent">
+                            <p> My Folders </p>
+                            <div class="journalFolder" >
+                                <button>
+                                    Folder 01
+                                </button>
+                                <button>
+                                    Folder 02
+                                </button>
+                                <button>
+                                    Folder 03
+                                </button>
+                                <button>
+                                    Folder 04
+                                </button>
+                                <button>
+                                    Folder 05
+                                </button>
+
+                            </div>
+                        </div>
+                        
+                    </div>
+
+                    <div id="JSM" class="ADcontent active">
+
+                        <div class="journalContent">
+                            <p> Shared With Me </p>
+                            <div class="journalFolder" ></div>
+                        </div>
+                        
+                    </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+        <div class="popupUI" id="chatLogs">
+
+            <div class="header">
+                <div style="display: flex; flex-direction: row; gap: 0.4vw;">
+                    <i class="fa-solid fa-comments"></i>
+                    <p> Chat Log </p>
+                </div>
+                <div style="display: flex; flex-direction: row; gap: 0.3vw;">
+                    <button class="minBtn" class="minBtn" aria-label="Minimize window"> <i
+                            class="fa-solid fa-minus"></i> </button>
+                    <button class="clsBtn" onclick="closeUI('chatLogs')" aria-label="Close window"> <i
+                            class="fa-solid fa-x"></i> </button>
+                </div>
+            </div>
+
+            <div class="content">
+
+                <div class="contentContainer">
+                    <div class="chatUser">
+                        <p> Chandler The Siamese | GM</p>
+                        <div class="chatBox">
+                            <p style="font-weight: lighter;">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga esse impedit laborum sint
+                                sed ipsam quos delectus similique iusto nostrum iste eum, minima molestiae sit
+                                consequatur obcaecati nemo mollitia cumque.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="chatOther">
+                        <p> MiaMiaOG </p>
+                        <div class="chatBox" id="cbOther">
+                            <p style="font-weight: lighter;">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga esse impedit laborum sint
+                                sed ipsam quos delectus similique iusto nostrum iste eum, minima molestiae sit
+                                consequatur obcaecati nemo mollitia cumque.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="chatOther">
+                        <p> Gin </p>
+                        <div class="chatBox" id="cbOther">
+                            <p style="font-weight: lighter;">
+                                Gusto ko uminom
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="chatUser">
+                        <p> Chandler The Siamese | GM</p>
+                        <div class="chatBox">
+                            <p style="font-weight: lighter;">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga esse impedit laborum sint
+                                sed ipsam quos delectus similique iusto nostrum iste eum, minima molestiae sit
+                                consequatur obcaecati nemo mollitia cumque.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="chatOther">
+                        <p> MiaMiaOG </p>
+                        <div class="chatBox" id="cbOther">
+                            <p style="font-weight: lighter;">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga esse impedit laborum sint
+                                sed ipsam quos delectus similique iusto nostrum iste eum, minima molestiae sit
+                                consequatur obcaecati nemo mollitia cumque.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="chatOther">
+                        <p> Gin </p>
+                        <div class="chatBox" id="cbOther">
+                            <p style="font-weight: lighter;">
+                                Gusto ko uminom
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="chatboxSection">
+                    <input type="text">
+                    <button>
+                        <i class="fa-regular fa-paper-plane"></i>
+                    </button>
+                </div>
+
+            </div>
+
+        </div>
 
         </div>
 
