@@ -1,38 +1,150 @@
+const buttons = document.querySelectorAll(
+    "#assetManager .controlButton"
+);
 
-let selectedDice = 6; // Default dice: D6
+const assetUIs = document.querySelectorAll(".assetUI");
 
-document.querySelectorAll(".diceButton").forEach(button => {
-    button.addEventListener("click", function () {
-        selectedDice = Number(this.id.substring(1));
+buttons.forEach(button => {
+    button.addEventListener("click", () => {
 
-        console.log("Selected dice: D" + selectedDice);
+        const target = button.dataset.target;
+        const selectedUI = document.getElementById(target);
+
+        // Check if the selected UI is already open
+        const isOpen = selectedUI?.classList.contains("active");
+
+        // Close all asset UIs
+        assetUIs.forEach(ui => {
+            ui.classList.remove("active");
+        });
+
+        // If it wasn't open, open it
+        if (selectedUI && !isOpen) {
+            selectedUI.classList.add("active");
+        }
+
     });
 });
 
-function rollDice() {
-    const diceCount = Number(document.getElementById("diceCount").value);
-    const diceModifier = Number(document.getElementById("diceModifier").value);
-    const diceLog = document.getElementById("diceLog");
-    const values = [];
+function showContent(section) {
+            // Hide all content
+            document.querySelectorAll('.ADcontent').forEach(content => {
+                content.classList.remove('active');
+            });
 
-    if (diceCount < 1 || !Number.isInteger(diceCount)) {
-        alert("Please enter a valid number of dice.");
-        return;
+            // Show selected content
+            document.getElementById(section).classList.add('active');
+        }
+
+document.querySelectorAll(".popupUI").forEach(popup => {
+    const minBtn = popup.querySelector(".minBtn");
+
+    if (!minBtn) return;
+
+    minBtn.addEventListener("click", () => {
+        const isMinimized = popup.classList.toggle("minimized");
+
+        if (isMinimized) {
+            popup.dataset.originalHeight = popup.style.height;
+            popup.style.height = "fit-content";
+        } else {
+            popup.style.height = popup.dataset.originalHeight || "";
+        }
+
+        minBtn.innerHTML = isMinimized
+            ? '<i class="fa-solid fa-plus"></i>'
+            : '<i class="fa-solid fa-minus"></i>';
+    });
+});
+
+function openUI(id) {
+    const ui = document.getElementById(id);
+    if (ui) ui.style.display = "block";
+}
+
+function closeUI(id) {
+    const ui = document.getElementById(id);
+    if (ui) ui.style.display = "none";
+}
+
+function saveUIPosition(elmnt) {
+    const id = elmnt.id;
+    if (!id) return;
+
+    localStorage.setItem(`ui-position-${id}`, JSON.stringify({
+        left: elmnt.style.left,
+        top: elmnt.style.top
+    }));
+}
+
+function restoreUIPosition(elmnt) {
+    const id = elmnt.id;
+    if (!id) return;
+
+    const saved = localStorage.getItem(`ui-position-${id}`);
+    if (!saved) return;
+
+    const position = JSON.parse(saved);
+
+    elmnt.style.left = position.left;
+    elmnt.style.top = position.top;
+}
+
+let highestZIndex = 1000;
+
+document.querySelectorAll(".popupUI").forEach(popup => {
+    restoreUIPosition(popup);
+    dragElement(popup);
+});
+
+function dragElement(elmnt) {
+    const header = elmnt.querySelector(".header");
+    if (!header) return;
+
+    let startX = 0;
+    let startY = 0;
+    let startLeft = 0;
+    let startTop = 0;
+    let dragging = false;
+
+    header.addEventListener("pointerdown", (e) => {
+        // Ignore clicks on window controls
+        if (e.target.closest("button")) return;
+        if (e.button !== 0) return;
+
+        const rect = elmnt.getBoundingClientRect();
+
+        startX = e.clientX;
+        startY = e.clientY;
+        startLeft = rect.left;
+        startTop = rect.top;
+        dragging = true;
+
+        elmnt.style.left = `${rect.left}px`;
+        elmnt.style.top = `${rect.top}px`;
+        elmnt.style.zIndex = ++highestZIndex;
+
+        header.setPointerCapture(e.pointerId);
+        e.preventDefault();
+    });
+
+    header.addEventListener("pointermove", (e) => {
+        if (!dragging) return;
+
+        elmnt.style.left =
+            `${startLeft + e.clientX - startX}px`;
+
+        elmnt.style.top =
+            `${startTop + e.clientY - startY}px`;
+    });
+
+    function stopDragging() {
+        if (!dragging) return;
+
+        dragging = false;
+        saveUIPosition(elmnt);
     }
 
-    for (let i = 0; i < diceCount; i++) {
-        const value = Math.floor(Math.random() * selectedDice) + 1;
-        values.push(value);
-    }
-
-    const total = values.reduce((sum, value) => sum + value, 0) + diceModifier;
-
-    diceLog.innerHTML = `
-        <p>D${selectedDice}: [${values.join(", ")}]</p>
-        <p>Modifier: ${diceModifier}</p>
-        <p>Total: ${total}</p>
-    `;
-
-    console.log("Rolls:", values);
-    console.log("Total:", total);
+    header.addEventListener("pointerup", stopDragging);
+    header.addEventListener("pointercancel", stopDragging);
 }

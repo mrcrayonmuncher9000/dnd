@@ -16,189 +16,1321 @@
     <div id="controlBar">
 
         <span class="contBG" id="mainBar">
-            <button class="controlButton"> <i class="fa-solid fa-circle-user"></i> </button>
-            <button class="controlButton"> <i class="fa-solid fa-address-book"></i> </button>
-            <button class="controlButton"> <i class="fa-solid fa-comments"></i> </button>
-            <button class="controlButton"> <i class="fa-solid fa-book"></i> </button>
-            <button class="controlButton"> <i class="fa-solid fa-dice-d20"></i> </button>
-            <button class="controlButton"> <i class="fa-solid fa-music"></i> </button>
+            <button class="controlButton" onclick="openUI('UI')"> <i class="fa-solid fa-circle-user"></i> </button>
+            <button class="controlButton" onclick="openUI('campaignParty')"> <i class="fa-solid fa-address-book"></i> </button>
+            <button class="controlButton" onclick="openUI('UI')"> <i class="fa-solid fa-comments"></i> </button>
+            <button class="controlButton" onclick="openUI('UI')"> <i class="fa-solid fa-book"></i> </button>
+            <button class="controlButton" onclick="openUI('diceRoller')"> <i class="fa-solid fa-dice-d20"></i> </button>
+            <button class="controlButton" onclick="openUI('msPlayer')"> <i class="fa-solid fa-music"></i> </button>
         </span>
 
         <span class="contBG" id="assetManager">
             <button class="controlButton"> <i class="fa-solid fa-magnifying-glass"></i> </button>
             <button class="controlButton"> <i class="fa-regular fa-circle-question"></i> </button>
             <div id="vs"></div>
-            <button class="controlButton"> <i class="fa-solid fa-map"></i> </button>
-            <button class="controlButton"> <i class="fa-solid fa-suitcase"></i> </button>
-            <button class="controlButton"> <i class="fa-solid fa-horse"></i> </button>
-            <button class="controlButton"> <i class="fa-solid fa-person"></i> </button>
-            <button class="controlButton"> <i class="fa-brands fa-delicious"></i> </button>
+            <button class="controlButton" data-target="mapGallery"> <i class="fa-solid fa-map"></i> </button>
+            <button class="controlButton" data-target="ipCollection"> <i class="fa-solid fa-suitcase"></i> </button>
+            <button class="controlButton" data-target="mountStables"> <i class="fa-solid fa-horse"></i> </button>
+            <button class="controlButton" data-target="entitiesRoster"> <i class="fa-solid fa-person"></i> </button>
+            <button class="controlButton" onclick="openUI('assetsDashboard')"> <i class="fa-brands fa-delicious"></i>
+            </button>
         </span>
 
         <span class="contBG" id="toolBar">
-            <button class="controlButton"> <i class="fa-solid fa-hand"></i> </button>
-            <button class="controlButton"> <i class="fa-solid fa-object-ungroup"></i> </button>
-            <button class="controlButton"> <i class="fa-solid fa-cloud"></i> </button>
-            <button class="controlButton"> <i class="fa-solid fa-burst"></i> </button>
-            <button class="controlButton"> <i class="fa-solid fa-t"></i> </button>
-            <button class="controlButton"> <i class="fa-solid fa-arrow-rotate-left"></i> </button>
-            <button class="controlButton"> <i class="fa-solid fa-arrow-rotate-right"></i> </button>
+            <button class="controlButton" onclick=""> <i class="fa-solid fa-hand"></i> </button>
+            <button class="controlButton" onclick=""> <i class="fa-solid fa-object-ungroup"></i> </button>
+            <button class="controlButton" onclick=""> <i class="fa-solid fa-cloud"></i> </button>
+            <button class="controlButton" onclick=""> <i class="fa-solid fa-burst"></i> </button>
+            <button class="controlButton" onclick=""> <i class="fa-solid fa-t"></i> </button>
+            <button class="controlButton" onclick=""> <i class="fa-solid fa-arrow-rotate-left"></i>
+            </button>
+            <button class="controlButton" onclick=""> <i class="fa-solid fa-arrow-rotate-right"></i>
+            </button>
         </span>
 
     </div>
 
+    <section class="assetSection">
 
-    <aside>
+        <div class="assetUI" id="mapGallery">
 
-        <span class="contBG" id="diceRoller">
+            <div class="assetSlot" id="gallerySlot">
+            </div>
 
-            <p> <i class="fa-solid fa-dice-d20"></i> Dice Roller</p>
+            <div class="assetSlot" id="gallerySlot">
+            </div>
 
-            <span id="diceOptions">
-                <button class="diceButton" id="d2">D2</button>
-                <button class="diceButton" id="d4">D4</button>
-                <button class="diceButton" id="d6">D6</button>
-                <button class="diceButton" id="d8">D8</button>
-                <button class="diceButton" id="d10">D10</button>
-                <button class="diceButton" id="d12">D12</button>
-                <button class="diceButton" id="d20">D20</button>
-                <button class="diceButton" id="d100">D100</button>
-            </span>
+            <div class="assetSlot" id="gallerySlot">
+            </div>
 
-            <span id="dicemodCont">
+            <div class="assetSlot" id="gallerySlot">
+            </div>
 
-                <span id="dmcontLeft">
+            <div class="assetSlot" id="gallerySlot">
+            </div>
 
-                    <label for="diceCount">Number of dice:</label>
-                    <input type="number" id="diceCount" name="diceCount" value="1" min="1">
+            <div class="assetSlot" id="gallerySlot">
+            </div>
 
-                    <label for="diceModifier">Modifier:</label>
-                    <input type="number" id="diceModifier" name="diceModifier" value="0">
+            <div class="assetSlot" id="gallerySlot">
+            </div>
 
-                </span>
+            <div class="assetSlot" id="gallerySlot">
+            </div>
 
-                <span id="dmcontRight">
+            <div class="assetSlot" id="gallerySlot">
+            </div>
 
-                    <label for="diceAdvantage">Advantage/Disadvantage:</label>
-                    <select id="diceAdvantage" name="diceAdvantage">
-                        <option value="none">None</option>
-                        <option value="advantage">Advantage</option>
-                        <option value="disadvantage">Disadvantage</option>
-                    </select>
+            <div class="assetSlot" id="gallerySlot">
+            </div>
 
-                    <label for="diceAttributes">Attributes:</label>
-                    <select id="diceAttributes" name="diceAttributes">
-                        <option value="none">None</option>
-                        <option value="Strength">Strength</option>
-                        <option value="Dexterity">Dexterity</option>
-                        <option value="Constitution">Constitution</option>
-                        <option value="Intelligence">Intelligence</option>
-                        <option value="Wisdom">Wisdom</option>
-                        <option value="Charisma">Charisma</option>
-                    </select>
+            <div class="assetSlot" id="gallerySlot">
+            </div>
 
-                </span>
+            <div class="assetSlot" id="gallerySlot">
+            </div>
 
-            </span>
+            <div class="assetSlot" id="gallerySlot">
+            </div>
 
-            <span id="diceBTOPT">
+            <div class="assetSlot" id="gallerySlot">
+            </div>
 
-                <span id="btoptTop">
-                    <button id="diceResetButton">Reset Dice <i class="fa-solid fa-arrows-rotate"></i> </button>
-                    <button onclick="rollDice()" id="diceRollButton">Roll Dice <i class="fa-solid fa-dice"></i>
-                    </button>
-                </span>
+        </div>
 
-                <span id="btoptBottom">
-                    <button id="AdddiceButton">Add to Quick Action <i class="fa-regular fa-square-plus"></i> </button>
-                </span>
+        <div class="assetUI" id="ipCollection">
 
-            </span>
+            <div class="assetSlot" id="gallerySlot">
+            </div>
 
-            <span id="dicelogCont">
+            <div class="assetSlot" id="gallerySlot">
+            </div>
 
-                <p> Dice Log </p>
+            <div class="assetSlot" id="gallerySlot">
+            </div>
 
-                <span id="diceLog"> </span>
+            <div class="assetSlot" id="gallerySlot">
+            </div>
 
-            </span>
+            <div class="assetSlot" id="gallerySlot">
+            </div>
 
-        </span>
+            <div class="assetSlot" id="gallerySlot">
+            </div>
 
-        <span class="contBG" id="MSPlayer">
-            <span id="topMS">
-                <p> <i class="fa-solid fa-music"></i> Music and SoundBoard Player </p>
-                <span>
-                    <button id="minBtn" title="Minimize popup"> <i class="fa-solid fa-minus"></i> </button>
-                    <button id="closeBtn" title="Close popup"> <i class="fa-solid fa-xmark"></i> </button>
-                </span>
-            </span>
-            <span id="midM">
+            <div class="assetSlot" id="gallerySlot">
+            </div>
 
-                <p> Music Player </p>
+            <div class="assetSlot" id="gallerySlot">
+            </div>
 
-                <p style="font-style: italic; font-weight: lighter; align-self: center;"> Placeholder Name for Music
-                    Playing </p>
+            <div class="assetSlot" id="gallerySlot">
+            </div>
 
-                <span id="time-audio">
+            <div class="assetSlot" id="gallerySlot">
+            </div>
 
-                    <p style="font-style: italic; font-weight: lighter;"> 0:00 </p>
+            <div class="assetSlot" id="gallerySlot">
+            </div>
 
-                    <input type="range" value="0" id="audio-slider">
+            <div class="assetSlot" id="gallerySlot">
+            </div>
 
-                    <p style="font-style: italic; font-weight: lighter;"> 0:00 </p>
+            <div class="assetSlot" id="gallerySlot">
+            </div>
 
-                </span>
+            <div class="assetSlot" id="gallerySlot">
+            </div>
 
-                <span id="MControls" style="align-self: center;">
-                    <button class="Mbtn"> <i class="fa-solid fa-repeat"></i> </button>
-                    <button class="Mbtn"> <i class="fa-solid fa-backward"></i> </button>
-                    <button class="Mbtn"> <i class="fa-solid fa-circle-play"></i></button>
-                    <button class="Mbtn"> <i class="fa-solid fa-forward"></i> </button>
-                    <button class="Mbtn"> <i class="fa-solid fa-sliders"></i> </button>
-                </span>
+        </div>
 
-                <button id="mPlaylist"> Music Playlist <i class="fa-solid fa-volume"></i> </button>
-            </span>
+        <div class="assetUI" id="mountStables">
 
-            <hr>
+            <div class="assetSlot" id="gallerySlot">
+            </div>
 
-            <span id="Splayer">
-                <p> SoundBoard Player </p>
-                <span id="TrackFav">
-                    <button id="SBtrack"> <i class="fa-regular fa-circle-pause"></i> Clipped Audio 01 <i
-                            class="fa-solid fa-star"></i> </button>
-                    <button id="SBtrack"> <i class="fa-regular fa-circle-pause"></i> Clipped Audio 02 <i
-                            class="fa-solid fa-star"></i> </button>
-                    <button id="SBtrack"> <i class="fa-regular fa-circle-pause"></i> Clipped Audio 03 <i
-                            class="fa-solid fa-star"></i> </button>
-                    <button id="SBtrack"> <i class="fa-regular fa-circle-pause"></i> Clipped Audio 04 <i
-                            class="fa-solid fa-star"></i> </button>
-                    <button id="SBtrack"> <i class="fa-regular fa-circle-pause"></i> Clipped Audio 05 <i
-                            class="fa-solid fa-star"></i> </button>
-                    <button id="SBtrack"> <i class="fa-regular fa-circle-pause"></i> Clipped Audio 06 <i
-                            class="fa-solid fa-star"></i> </button>
-                </span>
+            <div class="assetSlot" id="gallerySlot">
+            </div>
 
-                <button id="sTrack"> SoundBoard Tracks <i class="fa-solid fa-volume"></i> </button>
+            <div class="assetSlot" id="gallerySlot">
+            </div>
 
-            </span>
-        </span>
+            <div class="assetSlot" id="gallerySlot">
+            </div>
 
-    </aside>
+            <div class="assetSlot" id="gallerySlot">
+            </div>
 
-    <section style="width: 100%; border: solid 1px; border-radius: 0.5vw; position: absolute; bottom: 1.5vw; display: flex; justify-content: center;">
-        <div id="quickAction">
-            <button> <i class="fa-solid fa-plus"></i> </button>
-            <button> <i class="fa-solid fa-plus"></i> </button>
-            <button> <i class="fa-solid fa-plus"></i> </button>
-            <button> <i class="fa-solid fa-plus"></i> </button>
-            <button> <i class="fa-solid fa-plus"></i> </button>
-            <button> <i class="fa-solid fa-plus"></i> </button>
-            <button> <i class="fa-solid fa-plus"></i> </button>
-            <button> <i class="fa-solid fa-plus"></i> </button>
+            <div class="assetSlot" id="gallerySlot">
+            </div>
+
+            <div class="assetSlot" id="gallerySlot">
+            </div>
+
+            <div class="assetSlot" id="gallerySlot">
+            </div>
+
+            <div class="assetSlot" id="gallerySlot">
+            </div>
+
+            <div class="assetSlot" id="gallerySlot">
+            </div>
+
+            <div class="assetSlot" id="gallerySlot">
+            </div>
+
+            <div class="assetSlot" id="gallerySlot">
+            </div>
+
+            <div class="assetSlot" id="gallerySlot">
+            </div>
+
+            <div class="assetSlot" id="gallerySlot">
+            </div>
+
+        </div>
+
+        <div class="assetUI" id="entitiesRoster">
+
+            <div class="assetSlot" id="gallerySlot">
+            </div>
+
+            <div class="assetSlot" id="gallerySlot">
+            </div>
+
+            <div class="assetSlot" id="gallerySlot">
+            </div>
+
+            <div class="assetSlot" id="gallerySlot">
+            </div>
+
+            <div class="assetSlot" id="gallerySlot">
+            </div>
+
+            <div class="assetSlot" id="gallerySlot">
+            </div>
+
+            <div class="assetSlot" id="gallerySlot">
+            </div>
+
+            <div class="assetSlot" id="gallerySlot">
+            </div>
+
+            <div class="assetSlot" id="gallerySlot">
+            </div>
+
+            <div class="assetSlot" id="gallerySlot">
+            </div>
+
+            <div class="assetSlot" id="gallerySlot">
+            </div>
+
+            <div class="assetSlot" id="gallerySlot">
+            </div>
+
+            <div class="assetSlot" id="gallerySlot">
+            </div>
+
+            <div class="assetSlot" id="gallerySlot">
+            </div>
+
+        </div>
+
+        <div class="popupUI" id="assetsDashboard">
+
+            <div class="header">
+                <div style="display: flex; flex-direction: row; gap: 0.4vw;">
+                    <i class="fa-brands fa-delicious"></i>
+                    <p> Assets Dashboard </p>
+                </div>
+                <div style="display: flex; flex-direction: row; gap: 0.3vw;">
+                    <button class="minBtn" class="minBtn" aria-label="Minimize window"> <i
+                            class="fa-solid fa-minus"></i> </button>
+                    <button class="clsBtn" onclick="closeUI('assetsDashboard')" aria-label="Close window"> <i
+                            class="fa-solid fa-x"></i> </button>
+                </div>
+            </div>
+
+            <div class="content">
+                <div style="margin: 0; padding: 1vw 1vw;">
+                    <nav>
+                        <button class="navButton" onclick="showContent('MG')"> Map Gallery </button>
+                        <button class="navButton" onclick="showContent('IPC')"> Items and Props Collection </button>
+                        <button class="navButton" onclick="showContent('MS')"> Mount Stables </button>
+                        <button class="navButton" onclick="showContent('ER')"> Entities Roster </button>
+                    </nav>
+                </div>
+
+                <hr>
+
+                <div style="margin: 0; padding: 1vw 1vw;">
+
+                    <div style="margin: 0; display: flex; flex-direction: column; gap: 0.7vw;">
+                        <div
+                            style="width: auto; display: grid; grid-template-columns: repeat(2, auto); justify-content: space-between;">
+                            <button
+                                style="margin: 0; padding: 0.5vw 0.6vw; border-radius: 0.3vw; border: solid 0.1vw rgba(255, 255, 255, 0.572); background-color: black; color: white; display: flex; flex-direction: row; gap: 0.5vw; cursor: pointer;">
+                                Add New Folder <i class="fa-solid fa-folder-plus"></i> </button>
+                            <button
+                                style="margin: 0; padding: 0.5vw 0.6vw; display: flex; flex-direction: row; gap: 0.5vw; justify-content: center; align-items: center; align-content: center; cursor: pointer;">
+                                Upload Asset Token <i class="fa-solid fa-plus"></i> </button>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="folderContainer">
+
+                    <div class="Folder">
+                        <p> Placeholder Folder Title </p>
+                        <div style="display: flex; flex-direction: row; gap: 0.5vw;">
+                            <button class="pfOptions"> <i class="fa-solid fa-pen"></i> </button>
+                            <button class="pfOptions"> <i class="fa-solid fa-trash"></i> </button>
+                        </div>
+                    </div>
+
+                    <div class="Folder">
+                        <p> Placeholder Folder Title </p>
+                        <div style="display: flex; flex-direction: row; gap: 0.5vw;">
+                            <button class="pfOptions"> <i class="fa-solid fa-pen"></i> </button>
+                            <button class="pfOptions"> <i class="fa-solid fa-trash"></i> </button>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="unsortedTokens">
+
+                    <div id="MG" class="ADcontent active">
+
+                        <div class="contentGrid">
+
+                            <div class="cardContainer">
+
+                                <div class="cardImage"></div>
+
+                                <div class="cardHeader">
+
+                                    <p>Placeholder Title Card</p>
+
+                                    <div class="cardOptions">
+
+                                        <button> <i class="fa-solid fa-pen"></i> </button>
+                                        <button> <i class="fa-solid fa-ellipsis-vertical"></i> </button>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="cardContainer">
+
+                                <div class="cardImage"></div>
+
+                                <div class="cardHeader">
+
+                                    <p>Placeholder Title Card</p>
+
+                                    <div class="cardOptions">
+
+                                        <button> <i class="fa-solid fa-pen"></i> </button>
+                                        <button> <i class="fa-solid fa-ellipsis-vertical"></i> </button>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="cardContainer">
+
+                                <div class="cardImage"></div>
+
+                                <div class="cardHeader">
+
+                                    <p>Placeholder Title Card</p>
+
+                                    <div class="cardOptions">
+
+                                        <button> <i class="fa-solid fa-pen"></i> </button>
+                                        <button> <i class="fa-solid fa-ellipsis-vertical"></i> </button>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div id="IPC" class="ADcontent">
+
+                        <div class="contentGrid">
+
+                            <div class="cardContainer">
+
+                                <div class="cardImage"></div>
+
+                                <div class="cardHeader">
+
+                                    <p>Placeholder Title Card</p>
+
+                                    <div class="cardOptions">
+
+                                        <button> <i class="fa-solid fa-pen"></i> </button>
+                                        <button> <i class="fa-solid fa-ellipsis-vertical"></i> </button>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="cardContainer">
+
+                                <div class="cardImage"></div>
+
+                                <div class="cardHeader">
+
+                                    <p>Placeholder Title Card</p>
+
+                                    <div class="cardOptions">
+
+                                        <button> <i class="fa-solid fa-pen"></i> </button>
+                                        <button> <i class="fa-solid fa-ellipsis-vertical"></i> </button>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div id="MS" class="ADcontent">
+
+                        <div class="contentGrid">
+
+                            <div class="cardContainer">
+
+                                <div class="cardImage"></div>
+
+                                <div class="cardHeader">
+
+                                    <p>Placeholder Title Card</p>
+
+                                    <div class="cardOptions">
+
+                                        <button> <i class="fa-solid fa-pen"></i> </button>
+                                        <button> <i class="fa-solid fa-ellipsis-vertical"></i> </button>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="cardContainer">
+
+                                <div class="cardImage"></div>
+
+                                <div class="cardHeader">
+
+                                    <p>Placeholder Title Card</p>
+
+                                    <div class="cardOptions">
+
+                                        <button> <i class="fa-solid fa-pen"></i> </button>
+                                        <button> <i class="fa-solid fa-ellipsis-vertical"></i> </button>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="cardContainer">
+
+                                <div class="cardImage"></div>
+
+                                <div class="cardHeader">
+
+                                    <p>Placeholder Title Card</p>
+
+                                    <div class="cardOptions">
+
+                                        <button> <i class="fa-solid fa-pen"></i> </button>
+                                        <button> <i class="fa-solid fa-ellipsis-vertical"></i> </button>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="cardContainer">
+
+                                <div class="cardImage"></div>
+
+                                <div class="cardHeader">
+
+                                    <p>Placeholder Title Card</p>
+
+                                    <div class="cardOptions">
+
+                                        <button> <i class="fa-solid fa-pen"></i> </button>
+                                        <button> <i class="fa-solid fa-ellipsis-vertical"></i> </button>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="cardContainer">
+
+                                <div class="cardImage"></div>
+
+                                <div class="cardHeader">
+
+                                    <p>Placeholder Title Card</p>
+
+                                    <div class="cardOptions">
+
+                                        <button> <i class="fa-solid fa-pen"></i> </button>
+                                        <button> <i class="fa-solid fa-ellipsis-vertical"></i> </button>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="cardContainer">
+
+                                <div class="cardImage"></div>
+
+                                <div class="cardHeader">
+
+                                    <p>Placeholder Title Card</p>
+
+                                    <div class="cardOptions">
+
+                                        <button> <i class="fa-solid fa-pen"></i> </button>
+                                        <button> <i class="fa-solid fa-ellipsis-vertical"></i> </button>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="cardContainer">
+
+                                <div class="cardImage"></div>
+
+                                <div class="cardHeader">
+
+                                    <p>Placeholder Title Card</p>
+
+                                    <div class="cardOptions">
+
+                                        <button> <i class="fa-solid fa-pen"></i> </button>
+                                        <button> <i class="fa-solid fa-ellipsis-vertical"></i> </button>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="cardContainer">
+
+                                <div class="cardImage"></div>
+
+                                <div class="cardHeader">
+
+                                    <p>Placeholder Title Card</p>
+
+                                    <div class="cardOptions">
+
+                                        <button> <i class="fa-solid fa-pen"></i> </button>
+                                        <button> <i class="fa-solid fa-ellipsis-vertical"></i> </button>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="cardContainer">
+
+                                <div class="cardImage"></div>
+
+                                <div class="cardHeader">
+
+                                    <p>Placeholder Title Card</p>
+
+                                    <div class="cardOptions">
+
+                                        <button> <i class="fa-solid fa-pen"></i> </button>
+                                        <button> <i class="fa-solid fa-ellipsis-vertical"></i> </button>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            
+
+                        </div>
+
+                    </div>
+
+                    <div id="ER" class="ADcontent">
+
+                        <div class="contentGrid">
+
+                            <div class="cardContainer">
+
+                                <div class="cardImage"></div>
+
+                                <div class="cardHeader">
+
+                                    <p>Placeholder Title Card</p>
+
+                                    <div class="cardOptions">
+
+                                        <button> <i class="fa-solid fa-pen"></i> </button>
+                                        <button> <i class="fa-solid fa-ellipsis-vertical"></i> </button>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="cardContainer">
+
+                                <div class="cardImage"></div>
+
+                                <div class="cardHeader">
+
+                                    <p>Placeholder Title Card</p>
+
+                                    <div class="cardOptions">
+
+                                        <button> <i class="fa-solid fa-pen"></i> </button>
+                                        <button> <i class="fa-solid fa-ellipsis-vertical"></i> </button>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="cardContainer">
+
+                                <div class="cardImage"></div>
+
+                                <div class="cardHeader">
+
+                                    <p>Placeholder Title Card</p>
+
+                                    <div class="cardOptions">
+
+                                        <button> <i class="fa-solid fa-pen"></i> </button>
+                                        <button> <i class="fa-solid fa-ellipsis-vertical"></i> </button>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="cardContainer">
+
+                                <div class="cardImage"></div>
+
+                                <div class="cardHeader">
+
+                                    <p>Placeholder Title Card</p>
+
+                                    <div class="cardOptions">
+
+                                        <button> <i class="fa-solid fa-pen"></i> </button>
+                                        <button> <i class="fa-solid fa-ellipsis-vertical"></i> </button>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="cardContainer">
+
+                                <div class="cardImage"></div>
+
+                                <div class="cardHeader">
+
+                                    <p>Placeholder Title Card</p>
+
+                                    <div class="cardOptions">
+
+                                        <button> <i class="fa-solid fa-pen"></i> </button>
+                                        <button> <i class="fa-solid fa-ellipsis-vertical"></i> </button>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
         </div>
     </section>
+
+    <section>
+
+        <div class="popupUI" id="campaignParty">
+
+            <div class="header">
+                <div style="display: flex; flex-direction: row; gap: 0.4vw;">
+                    <i class="fa-solid fa-address-book"></i>
+                    <p> Camapaign Party </p>
+                </div>
+                <div style="display: flex; flex-direction: row; gap: 0.3vw;">
+                    <button class="minBtn" class="minBtn" aria-label="Minimize window"> <i
+                            class="fa-solid fa-minus"></i> </button>
+                    <button class="clsBtn" onclick="closeUI('campaignParty')" aria-label="Close window"> <i
+                            class="fa-solid fa-x"></i> </button>
+                </div>
+            </div>
+
+            <div class="content">
+                
+                <div style="margin: 0; padding: 1vw 0.9vw; display: flex; flex-direction: column; gap: 0.5vw; justify-content: center;">
+                    <p> Game Master </p>
+
+                    <div class="memberName">
+                        <div class="memberPhoto"></div>
+                        <p> Chandler The Siamese | GM </p>
+                    </div>
+
+                    <p> Players </p>
+                </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="popupUI" id="diceRoller">
+
+            <div class="header">
+                <div style="display: flex; flex-direction: row; gap: 0.4vw;">
+                    <i class="fa-solid fa-dice-d20"></i>
+                    <p> Dice Roller </p>
+                </div>
+                <div style="display: flex; flex-direction: row; gap: 0.3vw;">
+                    <button class="minBtn" class="minBtn" aria-label="Minimize window"> <i
+                            class="fa-solid fa-minus"></i> </button>
+                    <button class="clsBtn" onclick="closeUI('diceRoller')" aria-label="Close window"> <i
+                            class="fa-solid fa-x"></i> </button>
+                </div>
+            </div>
+
+            <div class="content">
+                <div
+                    style="margin: 0; padding: 1.5vw 0.5vw; display: grid; grid-template-columns: repeat(8, auto); justify-content: space-evenly;">
+                    <button class="diceButton" data-die="2">D2</button>
+                    <button class="diceButton" data-die="4">D4</button>
+                    <button class="diceButton" data-die="6">D6</button>
+                    <button class="diceButton" data-die="8">D8</button>
+                    <button class="diceButton" data-die="10">D10</button>
+                    <button class="diceButton" data-die="12">D12</button>
+                    <button class="diceButton" data-die="20">D20</button>
+                    <button class="diceButton" data-die="100">D100</button>
+                </div>
+
+                <div
+                    style="margin: 0; padding: 0 0.9vw; display: grid; grid-template-columns: repeat(2, auto); gap: 1.5vw; justify-content: space-between;">
+
+                    <div
+                        style="margin: 0; padding: 0; display: grid; grid-template-rows: repeat(2, auto); gap: 0.7vw; justify-content: space-between;">
+
+                        <div
+                            style="display: grid; grid-template-columns: repeat(2, auto); gap: 0.5vw; align-items: center; justify-content: space-between;">
+                            <label>Number of Rolls:</label>
+                            <input type="number" name="diceCount" value="1" min="1"
+                                style="padding: 0.5vw 0.4vw; max-width: 3vw; border-radius: 0.3vw; border: none; background-color: black; color: white; font-weight: 500;">
+                        </div>
+
+                        <div
+                            style="display: grid; grid-template-columns: repeat(2, auto); gap: 0.5vw; align-items: center; justify-content: space-between;">
+                            <label>Ability Modifier:</label>
+                            <input type="number" name="diceCount" value="0"
+                                style="padding: 0.5vw 0.4vw; max-width: 3vw; border-radius: 0.3vw; border: none; background-color: black; color: white; font-weight: 500;">
+                        </div>
+
+                    </div>
+
+                    <div
+                        style="margin: 0; padding: 0; display: grid; grid-template-rows: repeat(2, auto); gap: 0.7vw; justify-content: space-between;">
+
+                        <div
+                            style=" display: grid; grid-template-columns: repeat(2, auto); gap: 0.5vw; align-items: center; justify-content: space-between;">
+                            <label>Attributes:</label>
+                            <select
+                                style="padding: 0.5vw 0.4vw; max-width: 6.3vw; border-radius: 0.3vw; border: none; background-color: black; color: white; font-weight: 500; cursor: pointer;">
+                                <option> Strength (STR) </option>
+                                <option> Dexterity (DEX) </option>
+                                <option> Constitution (CON) </option>
+                                <option> Intelligence (INT) </option>
+                                <option> Wisdom (WIS) </option>
+                                <option> Charisma (CHA) </option>
+                            </select>
+                        </div>
+
+                        <div
+                            style="display: grid; grid-template-columns: repeat(2, auto); gap: 0.5vw; align-items: center; justify-content: space-between;">
+                            <label>Advantage:</label>
+                            <select
+                                style="padding: 0.5vw 0.4vw; max-width: 10vw; border-radius: 0.3vw; border: none; background-color: black; color: white; font-weight: 500; cursor: pointer;">
+                                <option> None </option>
+                                <option> Advantaged </option>
+                                <option> Disadvantaged </option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div style="margin: 0; padding: 1.5vw 0.9vw; display: flex; flex-direction: column; gap: 0.7vw;">
+                    <div
+                        style="width: auto; display: grid; grid-template-columns: repeat(2, auto); justify-content: space-between;">
+                        <button
+                            style="margin: 0; padding: 0.4vw 0.5vw; display: flex; flex-direction: row; gap: 0.5vw; cursor: pointer;">Reset
+                            Dice <i class="fa-solid fa-rotate"></i> </button>
+                        <button
+                            style="margin: 0; padding: 0.4vw 0.5vw; display: flex; flex-direction: row; gap: 0.5vw; cursor: pointer;">Roll
+                            Dice <i class="fa-solid fa-dice"></i></button>
+                    </div>
+                    <button
+                        style="margin: 0; padding: 0.4vw 0.5vw; width: fit-content; border-radius: 0.3vw; background-color: black; color: white; display: flex; flex-direction: row; gap: 0.5vw; cursor: pointer;">
+                        Add to Quick Action Tab <i class="fa-regular fa-square-plus"></i> </button>
+                </div>
+
+                <hr>
+
+                <div style="margin: 1vw 0; padding: 0.1vw 0.9vw; display: flex; flex-direction: column; gap: 0.7vw;">
+
+                    <div>
+                        <p> Dice Logs: </p>
+                    </div>
+
+                    <div
+                        style="padding: 0.5vw 0; height: 5vw; overflow: scroll; display: flex; flex-direction: column; gap: 0.4vw;">
+                        <p class="diceLog"> 00:00 - Dice History Placholder</p>
+                        <p class="diceLog"> 00:00 - Dice History Placholder</p>
+                        <p class="diceLog"> 00:00 - Dice History Placholder</p>
+                        <p class="diceLog"> 00:00 - Dice History Placholder</p>
+                        <p class="diceLog"> 00:00 - Dice History Placholder</p>
+                    </div>
+
+                    <div style="display: flex; flex-direction: row; justify-content: flex-end;">
+                        <button
+                            style="margin: 0; padding: 0.4vw 0.5vw; width: fit-content; display: flex; flex-direction: row; gap: 0.5vw; cursor: pointer;">
+                            Clear History <i class="fa-solid fa-trash-can"></i> </button>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="popupUI" id="msPlayer">
+
+            <div class="header">
+                <div style="display: flex; flex-direction: row; gap: 0.4vw;">
+                    <i class="fa-solid fa-music"></i>
+                    <p> Music and SoundBoard Player </p>
+                </div>
+                <div style="display: flex; flex-direction: row; gap: 0.3vw;">
+                    <button class="minBtn" class="minBtn" aria-label="Minimize window"> <i
+                            class="fa-solid fa-minus"></i> </button>
+                    <button class="clsBtn" onclick="closeUI('msPlayer')" aria-label="Close window"> <i
+                            class="fa-solid fa-x"></i> </button>
+                </div>
+            </div>
+
+            <div class="content">
+                <div style="margin: 0; padding: 1vw 1vw;">
+
+                    <p style="font-weight: 600;">Music Player</p>
+
+                    <div
+                        style="margin: 1vw 1vw; width: inherit; display: flex; flex-direction: column; justify-content: center; align-items: center; align-content: center; gap: 1.5vw;">
+
+                        <p style="font-weight: 600; font-style: italic;">Placeholder Title for Music</p>
+
+                        <div
+                            style="display: flex; width: 100%; flex-direction: row; justify-content: center; align-items: center; align-content: center; gap: 0.5vw;">
+
+                            <p style="font-weight: lighter;">00:00</p>
+
+                            <input type="range" value="0" class="audioSlider">
+
+                            <p style="font-weight: lighter;">00:00</p>
+
+                        </div>
+
+                        <div style="display: flex; flex-direction: row; gap: 0.5vw;">
+                            <button class="audioControl"> <i class="fa-solid fa-arrows-rotate"></i> </button>
+                            <button class="audioControl"> <i class="fa-solid fa-backward"></i> </button>
+                            <button class="audioControl"> <i class="fa-solid fa-circle-play"></i></button>
+                            <button class="audioControl"> <i class="fa-solid fa-forward"></i> </button>
+                            <button class="audioControl"> <i class="fa-solid fa-sliders"></i> </button>
+                        </div>
+
+                    </div>
+
+                    <div style="display: flex; flex-direction: row; justify-content: flex-start;">
+                        <button onclick="openUI('mPlaylist')"
+                            style="margin: 0; padding: 0.4vw 0.5vw; width: fit-content; display: flex; flex-direction: row; gap: 0.5vw; cursor: pointer;">
+                            Music playlist <i class="fa-solid fa-volume"></i> </button>
+                    </div>
+
+                </div>
+
+                <hr>
+
+                <div style="margin: 0; padding: 1vw 1vw;">
+
+                    <p style="font-weight: 600;">SoundBoard Player</p>
+
+                    <div
+                        style="margin: 1vw 0; display: grid; grid-template-columns: repeat(2, auto); gap: 0.5vw; justify-content: space-evenly;">
+
+                        <button class="sbTrack">
+                            <i class="fa-solid fa-star"></i>
+                            <p>SoundBoard Track 01</p>
+                            <i class="fa-solid fa-pause"></i>
+                        </button>
+
+                        <button class="sbTrack">
+                            <i class="fa-solid fa-star"></i>
+                            <p>SoundBoard Track 02</p>
+                            <i class="fa-solid fa-pause"></i>
+                        </button>
+
+                        <button class="sbTrack">
+                            <i class="fa-solid fa-star"></i>
+                            <p>SoundBoard Track 03</p>
+                            <i class="fa-solid fa-pause"></i>
+                        </button>
+
+                        <button class="sbTrack">
+                            <i class="fa-solid fa-star"></i>
+                            <p>SoundBoard Track 04</p>
+                            <i class="fa-solid fa-pause"></i>
+                        </button>
+
+                        <button class="sbTrack">
+                            <i class="fa-solid fa-star"></i>
+                            <p>SoundBoard Track 05</p>
+                            <i class="fa-solid fa-pause"></i>
+                        </button>
+
+                        <button class="sbTrack">
+                            <i class="fa-solid fa-star"></i>
+                            <p>SoundBoard Track 06</p>
+                            <i class="fa-solid fa-pause"></i>
+                        </button>
+
+                    </div>
+
+                    <div style="display: flex; flex-direction: row; justify-content: flex-start;">
+                        <button onclick="openUI('sbTracklist')"
+                            style="margin: 0; padding: 0.4vw 0.5vw; width: fit-content; display: flex; flex-direction: row; gap: 0.5vw; cursor: pointer;">
+                            SoundBoard Tracks <i class="fa-solid fa-circle-dot"></i> </button>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="popupUI" id="mPlaylist">
+
+            <div class="header">
+                <div style="display: flex; flex-direction: row; gap: 0.4vw;">
+                    <i class="fa-solid fa-volume"></i>
+                    <p> Music Playlist</p>
+                </div>
+                <div style="display: flex; flex-direction: row; gap: 0.3vw;">
+                    <button class="minBtn" class="minBtn" aria-label="Minimize window"> <i
+                            class="fa-solid fa-minus"></i> </button>
+                    <button class="clsBtn" onclick="closeUI('mPlaylist')" aria-label="Close window"> <i
+                            class="fa-solid fa-x"></i> </button>
+                </div>
+            </div>
+
+            <div class="content">
+                <div style="margin: 0; padding: 1vw 1vw;">
+
+                    <p style="font-weight: 600;">Music Player</p>
+
+                    <div
+                        style="margin: 1vw 1vw; width: inherit; display: flex; flex-direction: column; justify-content: center; align-items: center; align-content: center; gap: 1.5vw;">
+
+                        <p style="font-weight: 600; font-style: italic;">Placeholder Title for Music</p>
+
+                        <div
+                            style="display: flex; width: 100%; flex-direction: row; justify-content: center; align-items: center; align-content: center; gap: 0.5vw;">
+
+                            <p style="font-weight: lighter;">00:00</p>
+
+                            <input type="range" value="0" class="audioSlider" id="playlistSlider">
+
+                            <p style="font-weight: lighter;">00:00</p>
+
+                        </div>
+
+                        <div style="display: flex; flex-direction: row; gap: 0.5vw;">
+                            <button class="audioControl"> <i class="fa-solid fa-arrows-rotate"></i> </button>
+                            <button class="audioControl"> <i class="fa-solid fa-backward"></i> </button>
+                            <button class="audioControl"> <i class="fa-solid fa-circle-play"></i> </button>
+                            <button class="audioControl"> <i class="fa-solid fa-forward"></i> </button>
+                            <button class="audioControl"> <i class="fa-solid fa-sliders"></i> </button>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <hr>
+
+                <div style="margin: 0; padding: 1vw 1vw;">
+
+                    <div style="margin: 0; display: flex; flex-direction: column; gap: 0.7vw;">
+                        <div
+                            style="width: auto; display: grid; grid-template-columns: repeat(2, auto); justify-content: space-between;">
+                            <button
+                                style="margin: 0; padding: 0.5vw 0.6vw; border-radius: 0.3vw; border: solid 0.1vw rgba(255, 255, 255, 0.572); background-color: black; color: white; display: flex; flex-direction: row; gap: 0.5vw; cursor: pointer;">
+                                Add New Playlist <i class="fa-solid fa-folder-plus"></i> </button>
+                            <button
+                                style="margin: 0; padding: 0.5vw 0.6vw; display: flex; flex-direction: row; gap: 0.5vw; justify-content: center; align-items: center; align-content: center; cursor: pointer;">
+                                Upload Music <i class="fa-solid fa-plus"></i> </button>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="folderContainer">
+
+                    <div class="Folder">
+                        <p> Placeholder Playlist Title </p>
+                        <div style="display: flex; flex-direction: row; gap: 0.5vw;">
+                            <button class="pfOptions"> <i class="fa-solid fa-pen"></i> </button>
+                            <button class="pfOptions"> <i class="fa-solid fa-trash"></i> </button>
+                        </div>
+                    </div>
+
+                    <div class="Folder">
+                        <p> Placeholder Playlist Title </p>
+                        <div style="display: flex; flex-direction: row; gap: 0.5vw;">
+                            <button class="pfOptions"> <i class="fa-solid fa-pen"></i> </button>
+                            <button class="pfOptions"> <i class="fa-solid fa-trash"></i> </button>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="unsortedMusicList">
+                    <div class="musicFormat">
+                        <h1> 1 </h1>
+                        <p>Unsorted Music Title</p>
+                        <p style="font-weight: lighter;">00:00</p>
+                        <div>
+                            <button class="musicControl"> <i class="fa-solid fa-trash-can"></i> </button>
+                            <button class="musicControl"> <i class="fa-solid fa-pen"></i> </button>
+                            <button class="musicControl"> <i class="fa-solid fa-arrows-rotate"></i> </button>
+                            <button class="musicControl"> <i class="fa-solid fa-sliders"></i> </button>
+                            <button class="musicControl"> <i class="fa-solid fa-circle-play"></i> </button>
+                        </div>
+                    </div>
+
+                    <div class="musicFormat">
+                        <h1> 1 </h1>
+                        <p>Unsorted Music Title</p>
+                        <p style="font-weight: lighter;">00:00</p>
+                        <div>
+                            <button class="musicControl"> <i class="fa-solid fa-trash-can"></i> </button>
+                            <button class="musicControl"> <i class="fa-solid fa-pen"></i> </button>
+                            <button class="musicControl"> <i class="fa-solid fa-arrows-rotate"></i> </button>
+                            <button class="musicControl"> <i class="fa-solid fa-sliders"></i> </button>
+                            <button class="musicControl"> <i class="fa-solid fa-circle-play"></i> </button>
+                        </div>
+                    </div>
+
+                    <div class="musicFormat">
+                        <h1> 1 </h1>
+                        <p>Unsorted Music Title</p>
+                        <p style="font-weight: lighter;">00:00</p>
+                        <div>
+                            <button class="musicControl"> <i class="fa-solid fa-trash-can"></i> </button>
+                            <button class="musicControl"> <i class="fa-solid fa-pen"></i> </button>
+                            <button class="musicControl"> <i class="fa-solid fa-arrows-rotate"></i> </button>
+                            <button class="musicControl"> <i class="fa-solid fa-sliders"></i> </button>
+                            <button class="musicControl"> <i class="fa-solid fa-circle-play"></i> </button>
+                        </div>
+                    </div>
+
+                    <div class="musicFormat">
+                        <h1> 1 </h1>
+                        <p>Unsorted Music Title</p>
+                        <p style="font-weight: lighter;">00:00</p>
+                        <div>
+                            <button class="musicControl"> <i class="fa-solid fa-trash-can"></i> </button>
+                            <button class="musicControl"> <i class="fa-solid fa-pen"></i> </button>
+                            <button class="musicControl"> <i class="fa-solid fa-arrows-rotate"></i> </button>
+                            <button class="musicControl"> <i class="fa-solid fa-sliders"></i> </button>
+                            <button class="musicControl"> <i class="fa-solid fa-circle-play"></i> </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="popupUI" id="sbTracklist">
+
+            <div class="header">
+                <div style="display: flex; flex-direction: row; gap: 0.4vw;">
+                    <i class="fa-solid fa-circle-dot"></i>
+                    <p> SoundBoard Tracks</p>
+                </div>
+                <div style="display: flex; flex-direction: row; gap: 0.3vw;">
+                    <button class="minBtn" class="minBtn" aria-label="Minimize window"> <i
+                            class="fa-solid fa-minus"></i> </button>
+                    <button class="clsBtn" onclick="closeUI('sbTracklist')" aria-label="Close window"> <i
+                            class="fa-solid fa-x"></i> </button>
+                </div>
+            </div>
+
+            <div class="content">
+                <div style="margin: 0; padding: 1vw 1vw;">
+
+                    <p style="font-weight: 600;">Quick SoundBoard Player</p>
+
+                    <div
+                        style="margin: 1vw 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.5vw; justify-content: space-between;">
+
+                        <button class="sbTrack">
+                            <i class="fa-solid fa-star"></i>
+                            <p>SoundBoard Track 01</p>
+                            <i class="fa-solid fa-pause"></i>
+                        </button>
+
+                        <button class="sbTrack">
+                            <i class="fa-solid fa-star"></i>
+                            <p>SoundBoard Track 02</p>
+                            <i class="fa-solid fa-pause"></i>
+                        </button>
+
+                        <button class="sbTrack">
+                            <i class="fa-solid fa-star"></i>
+                            <p>SoundBoard Track 03</p>
+                            <i class="fa-solid fa-pause"></i>
+                        </button>
+
+                        <button class="sbTrack">
+                            <i class="fa-solid fa-star"></i>
+                            <p>SoundBoard Track 04</p>
+                            <i class="fa-solid fa-pause"></i>
+                        </button>
+
+                        <button class="sbTrack">
+                            <i class="fa-solid fa-star"></i>
+                            <p>SoundBoard Track 05</p>
+                            <i class="fa-solid fa-pause"></i>
+                        </button>
+
+                        <button class="sbTrack">
+                            <i class="fa-solid fa-star"></i>
+                            <p>SoundBoard Track 06</p>
+                            <i class="fa-solid fa-pause"></i>
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <hr>
+
+                <div style="margin: 0; padding: 1vw 1vw;">
+
+                    <div style="margin: 0; display: flex; flex-direction: column; gap: 0.7vw;">
+                        <div
+                            style="width: auto; display: grid; grid-template-columns: repeat(2, auto); justify-content: space-between;">
+                            <button
+                                style="margin: 0; padding: 0.5vw 0.6vw; border-radius: 0.3vw; border: solid 0.1vw rgba(255, 255, 255, 0.572); background-color: black; color: white; display: flex; flex-direction: row; gap: 0.5vw; cursor: pointer;">
+                                Add New Track <i class="fa-solid fa-folder-plus"></i> </button>
+                            <button
+                                style="margin: 0; padding: 0.5vw 0.6vw; display: flex; flex-direction: row; gap: 0.5vw; justify-content: center; align-items: center; align-content: center; cursor: pointer;">
+                                Upload Sound <i class="fa-solid fa-plus"></i> </button>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="folderContainer">
+
+                    <div class="Folder">
+                        <p> Placeholder Track Title </p>
+                        <div style="display: flex; flex-direction: row; gap: 0.5vw;">
+                            <button class="pfOptions"> <i class="fa-solid fa-pen"></i> </button>
+                            <button class="pfOptions"> <i class="fa-solid fa-trash"></i> </button>
+                        </div>
+                    </div>
+
+                    <div class="Folder">
+                        <p> Placeholder Track Title </p>
+                        <div style="display: flex; flex-direction: row; gap: 0.5vw;">
+                            <button class="pfOptions"> <i class="fa-solid fa-pen"></i> </button>
+                            <button class="pfOptions"> <i class="fa-solid fa-trash"></i> </button>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="unsortedTrackList">
+
+                    <div class="UTLcontainer">
+
+                        <button class="sbTrack">
+                            <i class="fa-solid fa-star"></i>
+                            <p>SoundBoard Track 01</p>
+                            <i class="fa-solid fa-pause"></i>
+                        </button>
+
+                        <button class="sbTrack">
+                            <i class="fa-solid fa-star"></i>
+                            <p>SoundBoard Track 02</p>
+                            <i class="fa-solid fa-pause"></i>
+                        </button>
+
+                        <button class="sbTrack">
+                            <i class="fa-solid fa-star"></i>
+                            <p>SoundBoard Track 03</p>
+                            <i class="fa-solid fa-pause"></i>
+                        </button>
+
+                        <button class="sbTrack">
+                            <i class="fa-solid fa-star"></i>
+                            <p>SoundBoard Track 04</p>
+                            <i class="fa-solid fa-pause"></i>
+                        </button>
+
+                        <button class="sbTrack">
+                            <i class="fa-solid fa-star"></i>
+                            <p>SoundBoard Track 05</p>
+                            <i class="fa-solid fa-pause"></i>
+                        </button>
+
+                        <button class="sbTrack">
+                            <i class="fa-solid fa-star"></i>
+                            <p>SoundBoard Track 06</p>
+                            <i class="fa-solid fa-pause"></i>
+                        </button>
+
+                        <button class="sbTrack">
+                            <i class="fa-solid fa-star"></i>
+                            <p>SoundBoard Track 07</p>
+                            <i class="fa-solid fa-pause"></i>
+                        </button>
+
+                        <button class="sbTrack">
+                            <i class="fa-solid fa-star"></i>
+                            <p>SoundBoard Track 08</p>
+                            <i class="fa-solid fa-pause"></i>
+                        </button>
+
+                        <button class="sbTrack">
+                            <i class="fa-solid fa-star"></i>
+                            <p>SoundBoard Track 09</p>
+                            <i class="fa-solid fa-pause"></i>
+                        </button>
+
+                        <button class="sbTrack">
+                            <i class="fa-solid fa-star"></i>
+                            <p>SoundBoard Track 10</p>
+                            <i class="fa-solid fa-pause"></i>
+                        </button>
+
+                        <button class="sbTrack">
+                            <i class="fa-solid fa-star"></i>
+                            <p>SoundBoard Track 11</p>
+                            <i class="fa-solid fa-pause"></i>
+                        </button>
+
+                        <button class="sbTrack">
+                            <i class="fa-solid fa-star"></i>
+                            <p>SoundBoard Track 12</p>
+                            <i class="fa-solid fa-pause"></i>
+                        </button>
+
+                        <button class="sbTrack">
+                            <i class="fa-solid fa-star"></i>
+                            <p>SoundBoard Track 13</p>
+                            <i class="fa-solid fa-pause"></i>
+                        </button>
+
+                        <button class="sbTrack">
+                            <i class="fa-solid fa-star"></i>
+                            <p>SoundBoard Track 12</p>
+                            <i class="fa-solid fa-pause"></i>
+                        </button>
+
+                        <button class="sbTrack">
+                            <i class="fa-solid fa-star"></i>
+                            <p>SoundBoard Track 13</p>
+                            <i class="fa-solid fa-pause"></i>
+                        </button>
+
+                        <button class="sbTrack">
+                            <i class="fa-solid fa-star"></i>
+                            <p>SoundBoard Track 14</p>
+                            <i class="fa-solid fa-pause"></i>
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
 
     <script src="index.js"></script>
 </body>

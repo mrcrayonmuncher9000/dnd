@@ -9,12 +9,9 @@
 }
 
 body {
-    background: linear-gradient(to bottom, #1a1a1a, #000000) no-repeat center center fixed;
+    background: linear-gradient(to bottom, #c2c2c2, #868686) no-repeat center center fixed;
 }
 
-hr {
-    background: linear-gradient(to right, black, white, black);
-}
 /* 
    vvv - Top Bar / Control Bar over here - vvv
 */
@@ -103,323 +100,468 @@ hr {
 }
 
 /* 
-   vvv - UI Functions Windows down here - vvv
-
-   Dice Roller Window:
+   vvv - UI Asset Slots here - vvv
 */
 
-#diceRoller {
-    margin: 0.5vw;
-    padding: 0.8vw;
-    width: 27vw;
-    height: 25vw;
-
-    background-color: #3636368e;
-    color: white;
-
+.assetSection {
     display: flex;
-    flex-direction: column;
-    gap: 0.5vw;
+    justify-content: center;
 }
 
-#diceRoller p {
+.assetUI {
+    display: none;
+}
+
+.assetUI.active {
+    margin: 0;
+    padding: 0.5vw;
+    width: 22vw;
+    height: 2.5vw;
+    position: fixed;
+    left: 38vw;
+
+    overflow-x: auto;
+    display: none;
+
+    border-radius: 0.5vw;
+    background-color: #08080899;
+
     display: flex;
     flex-direction: row;
     gap: 0.5vw;
+    justify-content: left;
+    align-items: center;
+    align-content: center;
 }
 
-#diceOptions {
+.assetSlot {
     margin: 0;
-    padding: 0.5vw;
+    padding: 0.8vw;
+
+    border-radius: 0.4vw;
+    background-color: #080808;
+
+    cursor: grab;
+}
+
+/* 
+   vvv - UI Functions and Windows here - vvv
+*/
+
+
+
+.popupUI {
+    margin: 0;
+    padding: 0 0 0.3vw 0;
+    width: fit-content;
+    height: fit-content;
+    position: fixed;
+
+    background-color: #000000a9;
+    backdrop-filter: blur(0.1vw);
+    border-radius: 0.4vw;
+    overflow: hidden;
+    color: white;
+
+    display: none;
+
+    resize: both;
+    overflow: auto;
+}
+
+.popupUI .content {
+    display: block;
+}
+
+.popupUI.minimized .content {
+    display: none;
+}
+
+.popupUI.minimized {
+    height: fit-content !important;
+    min-height: 0;
+}
+
+.header {
+    margin: 0;
+    padding: 0.7vw 0.6vw;
     width: auto;
-    height: auto;
+    height: fit-content;
+
+    background-color: #1c1c1c;
 
     display: grid;
-    gap: 0.5vw;
-    grid-template-columns: repeat(8, auto);
+    grid-template-columns: repeat(2, auto);
     justify-content: space-between;
+
+    cursor: grab;
+    user-select: none;
+}
+
+.header:active {
+    cursor: grabbing;
+}
+
+.active,
+.header:hover {
+    background-color: #080808;
+}
+
+.minBtn,
+.clsBtn {
+    border: solid 0.1vw #d8d8d8;
+    border-radius: 0.2vw;
+    background-color: transparent;
+    color: #d8d8d8;
+
+    cursor: pointer;
+}
+
+.memberPhoto {
+    width: 1vw;
+    height: 1vw;
+
+    border-radius: 0.1vw;
+    background-color: white;
+}
+
+.memberName {
+    margin: 0;
+    padding: 0.5vw;
+    width: 100%;
+
+    border-radius: 0.3vw;
+    background-color: black;
+
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 0.5vw;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#diceRoller {
+    top: 3vw;
+    left: 10vw;
 }
 
 .diceButton {
     margin: 0;
-    padding: 0.8vw 1.2vw;
-    width: 0;
-    height: 0;
+    padding: 0.4vw 0.2vw;
+    min-width: 2vw;
 
-    border-radius: 0.4vw;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    font-weight: bold;
+    cursor: pointer;
 }
 
-#dicemodCont {
+.diceLog {
     margin: 0;
-    padding: 0;
-    width: auto;
-    height: auto;
+    padding-left: 0.5vw;
 
-    display: grid;
-    grid-template-columns: repeat(2, 12vw);
-    justify-content: space-between;
+    font-weight: 500;
+    font-style: italic;
 }
 
-#dmcontLeft {
-    margin: 0;
-    padding: 0.3vw;
-    width: auto;
-    height: auto;
-
-    display: grid;
-    gap: 0.6vw;
-    grid-template-rows: repeat(2, auto);
-}
-
-#dmcontLeft input {
-    margin: 0;
-    padding: 0.3vw 0.5vw;
-    width: auto;
-    height: auto;
-
-    border-radius: 0.4vw;
-
-    font-weight: normal;
-}
-
-#dmcontRight {
-    margin: 0;
-    padding: 0.3vw;
-    width: auto;
-    height: auto;
-
-    display: grid;
-    gap: 0.6vw;
-    grid-template-rows: repeat(2, auto);
-}
-
-#dmcontRight select {
-    margin: 0;
-    padding: 0.3vw 0.5vw;
-    width: auto;
-    height: auto;
-
-    border-radius: 0.4vw;
-
-    font-weight: normal;
-}
-
-#diceBTOPT {
-    margin: 0;
-    padding: 0.9vw 0.5vw;
-    width: auto;
-    height: auto;
-
-    display: flex;
-    flex-direction: column;
-    gap: 0.8vw;
-}
-
-#btoptTop {
-    display: grid;
-    grid-template-columns: repeat(2, auto);
-    justify-content: space-between;
-}
-
-#btoptTop button {
-    margin: 0;
-    padding: 0.4vw 0.6vw;
-    width: auto;
-    height: auto;
-
-    border-radius: 0.3vw;
-}
-
-#btoptBottom Button {
-    margin: 0;
-    padding: 0.4vw 0.6vw;
-    width: 10vw;
-    height: auto;
-
-    border-radius: 0.3vw;
-
-    background-color: #1a1a1a;
-    color: white;
-}
-
-/* 
-  ^^^ - End of Dice Roller Window ^^^
-*/
-
-#MSPlayer {
-    position: absolute;
+#msPlayer {
     top: 3vw;
-    left: 29vw;
-
-    margin: 0.5vw;
-    padding: 0.8vw;
-    width: 27vw;
-    height: auto;
-
-    background-color: #3636368e;
-    color: white;
-
-    display: flex;
-    flex-direction: column;
-    gap: 0.5vw;
+    left: 12vw;
 }
 
-#topMS {
-    display: grid;
-    grid-template-columns: repeat(2, auto);
-    justify-content: space-between;
-}
-
-#midM {
-    margin: 0;
-    padding: 0.5vw;
-    width: auto;
-    height: auto;
-
-    display: flex;
-    flex-grow: 1;
-    flex-direction: column;
-    gap: 1.5vw;
-}
-
-#time-audio {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 0.5vw;
-}
-
-#audio-slider {
-    position: relative;
+.audioSlider {
+    -webkit-appearance: none;
     width: 100%;
     height: 0.2vw;
 
-    border: solid grey;
-    border-radius: 0.5vw;
-
-    -webkit-appearance: none;
-}
-
-#audio-slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    width: 1vw;
-    height: 1vw;
-}
-
-.Mbtn {
-    margin: 0;
-    padding: 0.5vw;
-    width: auto;
-    height: auto;
-
-    border: none;
-    background-color: rgba(0, 0, 0, 0);
-}
-
-.Mbtn svg {
-    color: white;
-    font-size: 1.2vw;
-}
-
-#mPlaylist {
-    margin: 0;
-    padding: 0.4vw 0.6vw;
-    width: 8vw;
-    height: auto;
-
     border-radius: 0.3vw;
+    background-color: rgb(120, 120, 120);
 
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    gap: 0.5vw;
+    cursor: pointer;
 }
 
-#Splayer {
+.audioSlider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+}
+
+.audioSlider::-moz-range-thumb {
+    width: 0.3vw;
+    height: 1.5vw;
+    background: #ffffff;
+    border-radius: 0.5vw;
+    border: solid 0.3vw #3b3b3b;
+    cursor: pointer;
+}
+
+.audioSlider::-moz-range-progress {
+    height: 0.2vw;
+    background: white;
+}
+
+#playlistSlider {
+    width: 41vw;
+}
+
+.audioControl {
+    padding: 0.4vw;
+
+    background-color: rgb(26, 26, 26);
+    border-radius: 0.4vw;
+    border: solid 0.1vw rgb(148, 147, 147);
+}
+
+.audioControl:hover {
+    background-color: #3b3b3b;
+}
+
+.audioControl svg {
+    font-size: 1vw;
+    color: white;
+
+    cursor: pointer;
+}
+
+.sbTrack {
+    padding: 0.5vw 0.7vw;
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+
+    border-radius: 0.5vw;
+    background-color: black;
+    color: white;
+
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: 0.5vw;
+    align-items: center;
+
+    cursor: pointer;
+}
+
+.sbTrack p {
     margin: 0;
-    padding: 0.5vw;
-    width: auto;
-    height: auto;
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.folderContainer {
+    margin: 0 1vw 1vw 1vw;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5vw;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.Folder {
+    padding: 0.5vw 0.7vw;
+    width: 100%;
+
+    border: solid 0.1vw rgb(144, 144, 144);
+    border-radius: 0.5vw;
+    background-color: black;
+    color: white;
+
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 1vw;
+    justify-content: space-between;
+    align-items: center;
+
+    cursor: pointer;
+}
+
+.Folder p {
+    white-space: nowrap;
+    width: 7vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.pfOptions {
+    background-color: transparent;
+    border: none;
+
+    color: white;
+
+    cursor: pointer;
+}
+
+.unsortedMusicList {
+    margin: 0 1vw 1vw 0.3vw;
+    padding: 1vw 1vw;
+    height: 10vw;
+
+    overflow: scroll;
 
     display: flex;
     flex-direction: column;
-    gap: 1vw;
+    gap: 0.5vw;
 }
 
-#TrackFav {
+.musicFormat {
+    padding: 0.5vw 1vw;
+
+    border: solid 0.1vw #ffffff7d;
+    border-radius: 0.5vw;
+    background-color: #080808b7;
+
     display: grid;
-    grid-template-columns: repeat(2, auto);
-    gap: 0.7vw;
+    grid-template-columns: repeat(4, auto);
+    justify-content: space-between;
+    align-items: center;
+
+    cursor: pointer;
 }
 
-#SBtrack {
-    margin: 0;
-    padding: 0.6vw 0.6vw;
-    width: auto;
-    height: auto;
+.musicFormat div {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5vw;
+}
 
-    border-radius: 0.3vw;
-    border: solid 0.1vw white;
-    background-color: #000000;
+.musicControl {
+    padding: 0.1vw;
+
+    border-radius: 0.2vw;
+    background-color: #080808;
     color: white;
 
-    display: grid;
-    grid-template-columns: repeat(3, auto);
-    justify-content: space-between;
-} 
-
-#SBtrack svg {
-    font-size: 0.7vw;
+    cursor: pointer;
 }
 
-#sTrack {
-    margin: 0.7vw 0vw;
-    padding: 0.4vw 0.6vw;
-    width: 10vw;
-    height: auto;
+.musicControl:hover {
+    background-color: #3b3b3b;
+}
 
-    border-radius: 0.3vw;
+.unsortedTrackList {
+    margin: 0 1vw 1vw 0.3vw;
+    padding: 1vw 1vw;
+    height: 10vw;
+
+    overflow: scroll;
+}
+
+.UTLcontainer {
+    margin: 0;
+    padding: 0;
+
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.5vw;
+    justify-content: space-between;
+}
+
+nav {
+    margin: 0;
+    padding: 0;
+    width: 50vw;
 
     display: flex;
     flex-direction: row;
-    justify-content: center;
     gap: 0.5vw;
 }
 
-/* 
-  ^^^ - End of Dice Roller Window ^^^
-*/
-
-#quickAction {
+.navButton {
     margin: 0;
-    padding: 0.1vw 0.6vw;
-    width: auto;
-    height: auto;
+    padding: 0.4vw;
 
     border: solid 0.1vw white;
     border-radius: 0.3vw;
+    background-color: #080808;
+    color: white;
+}
+
+.ADcontent {
+    display: none;
+}
+
+.ADcontent.active {
+    background-color: transparent;
+    display: block;
+}
+
+.unsortedTokens {
+    margin: 0 1vw 1vw 0.3vw;
+    padding: 0.5vw 1vw;
+    height: 10vw;
+
+    overflow: scroll;
+}
+
+.contentGrid {
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    gap: 0.5vw;
+    justify-content: start;
+}
+
+.cardContainer {
+    margin: 0;
+    padding: 0;
+    width: 12vw;
+    height: 8vw;
+
+    overflow: hidden;
+
+    border-radius: 0.5vw;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.cardImage {
+    width: 100%;
+    height: 100%;
+
+    background-color: white;
+}
+
+.cardHeader {
+    margin: 0;
+    padding: 0.4vw 0.5vw;
+    width: 100%;
+
+    background-color: black;
 
     display: grid;
-    grid-template-columns: repeat(8, auto);
-    justify-content: space-between;
+    grid-template-columns: repeat(2, auto);
     gap: 0.5vw;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
 }
 
-#quickAction button {
-    margin: 0.7vw 0vw;
-    padding: 0.4vw 0.6vw;
-    width: auto;
-    height: auto;
+.cardHeader p {
+    white-space: nowrap;
+    width: 7vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 
-    border: solid 0.1vw white;
-    border-radius: 0.3vw;
-    background-color: rgba(255, 255, 255, 0);
+.cardOptions {
+    display: flex;
+    flex-direction: row;
+    gap: 0.3vw;
+}
 
+.cardOptions button {
+    padding: 0.2vw;
+
+    border: solid 0.1vw #ffffff8b;
+    border-radius: 0.2vw;
+    background-color: #080808;
     color: white;
+}
+
+.cardOptions button:hover {
+    border: solid 0.1vw #ffffffb9;
+    border-radius: 0.2vw;
+    background-color: #3e3e3e;
+    color: white;
+}
+
+.cardOptions button svg {
+    align-self: center;
 }
