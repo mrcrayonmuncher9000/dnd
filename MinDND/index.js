@@ -1,7 +1,5 @@
 const defaultVisibleUIs = [
-    "campaignParty",
-    "chatLogs",
-    "journalNotes"
+    "campaignParty"
 ];
 
 const uiCheckboxes = document.querySelectorAll(
@@ -390,3 +388,179 @@ function dragElement(elmnt) {
         console.error("Could not load custom maps:", error);
         setCustomMapStatus("Could not load saved maps from browser storage.");
     });
+
+    let activeDie = 20;
+    let lastDemoState = null;
+
+    async function demoApi(path, payload) {
+        const response = await fetch(path, {
+            method: payload ? "POST" : "GET",
+            headers: payload ? { "Content-Type": "application/json" } : undefined,
+            body: payload ? JSON.stringify(payload) : undefined
+        });
+        const result = await response.json();
+        if (!response.ok) {
+            throw new Error(result.error || `Request failed (${response.status}).`);
+        }
+        return result;
+    }
+
+    function renderDemoState(state) {
+        lastDemoState = state;
+        const requestedRoom = new URLSearchParams(window.location.search).get("room");
+        const activeRoom = state.rooms.find(room => room.id === requestedRoom) || state.rooms[0];
+        const campaignBanner = document.getElementById("campaignBanner");
+        campaignBanner.textContent = activeRoom
+            ? `${state.campaign.name} · ${activeRoom.name}`
+            : state.campaign.name;
+        document.title = `${state.campaign.name} | MinDND VTT`;
+
+        const partyList = document.getElementById("partyCharacterList");
+        partyList.replaceChildren();
+        state.characters.forEach(character => {
+            const member = document.createElement("div");
+            member.className = "memberName";
+            const photo = document.createElement("div");
+            photo.className = "memberPhoto";
+            photo.textContent = character.name.slice(0, 1);
+            const details = document.createElement("p");
+            const position = character.position;
+            details.textContent =
+                `${character.name} | ${character.role} · ${character.class_name} · ` +
+                `(${position.x}, ${position.y})${character.has_moved ? " · moved" : ""}`;
+            member.append(photo, details);
+            partyList.append(member);
+        });
+
+        ["moveCharacter", "diceCharacter"].forEach(selectId => {
+            const select = document.getElementById(selectId);
+            const previousValue = select.value;
+            select.replaceChildren();
+            state.characters.forEach(character => {
+                const option = document.createElement("option");
+                option.value = character.id;
+                option.textContent = character.name;
+                if (selectId === "moveCharacter" && character.has_moved) {
+                    option.disabled = true;
+                    option.textContent += " (moved)";
+                }
+                select.append(option);
+            });
+            if (state.characters.some(character => character.id === previousValue)) {
+                select.value = previousValue;
+            }
+        });
+
+        const diceLogs = document.getElementById("diceLogList");
+        diceLogs.replaceChildren();
+        const logs = state.logs.filter(entry => entry.type === "dice").slice().reverse();
+        if (logs.length === 0) {
+            const emptyMessage = document.createElement("p");
+            emptyMessage.className = "diceLog";
+            emptyMessage.textContent = "No dice rolls yet.";
+            diceLogs.append(emptyMessage);
+        } else {
+            logs.forEach(entry => {
+                const line = document.createElement("p");
+                line.className = "diceLog";
+                line.textContent = entry.message;
+                diceLogs.append(line);
+            });
+        }
+    }
+
+    async function refreshDemoState() {
+        try {
+            const state = await demoApi("/api/state");
+            renderDemoState(state);
+            document.getElementById("campaignBanner").removeAttribute("title");
+        } catch (error) {
+            console.error("Could not load campaign state:", error);
+            document.getElementById("campaignBanner").textContent =
+                "Backend unavailable. Start the demo with py .\\run_demo.py.";
+        }
+    }
+
+    document.querySelectorAll(".diceButton").forEach(button => {
+        button.setAttribute("aria-pressed", String(Number(button.dataset.die) === activeDie));
+        button.addEventListener("click", () => {
+            activeDie = Number(button.dataset.die);
+            document.querySelectorAll(".diceButton").forEach(dieButton => {
+                dieButton.setAttribute(
+                    "aria-pressed",
+                    String(Number(dieButton.dataset.die) === activeDie)
+                );
+            });
+        });
+    });
+
+    document.getElementById("rollDice").addEventListener("click", async () => {
+        const status = document.getElementById("diceRollStatus");
+        status.textContent = "Rolling...";
+        try {
+            const result = await demoApi("/api/roll", {
+                character_id: document.getElementById("diceCharacter").value,
+                dice_type: activeDie,
+                quantity: Number(document.getElementById("diceQuantity").value),
+                modifier: Number(document.getElementById("diceModifier").value),
+                attribute: document.getElementById("diceAttribute").value,
+                advantage: document.getElementById("diceAdvantage").value
+            });
+            status.textContent = result.log_message;
+            await refreshDemoState();
+        } catch (error) {
+            status.textContent = error.message;
+        }
+    });
+
+    document.getElementById("resetDice").addEventListener("click", () => {
+        activeDie = 20;
+        document.querySelector('.diceButton[data-die="20"]').click();
+        document.getElementById("diceQuantity").value = "1";
+        document.getElementById("diceModifier").value = "0";
+        document.getElementById("diceAttribute").value = "None";
+        document.getElementById("diceAdvantage").value = "None";
+        document.getElementById("diceRollStatus").textContent = "";
+    });
+
+    document.getElementById("moveForm").addEventListener("submit", async event => {
+        event.preventDefault();
+        const status = document.getElementById("moveStatus");
+        try {
+            const state = await demoApi("/api/move", {
+                character_id: document.getElementById("moveCharacter").value,
+                x: Number(document.getElementById("moveX").value),
+                y: Number(document.getElementById("moveY").value)
+            });
+            renderDemoState(state);
+            status.textContent = "Move saved to the campaign state.";
+        } catch (error) {
+            status.textContent = error.message;
+        }
+    });
+
+    document.getElementById("resetTurn").addEventListener("click", async () => {
+        try {
+            renderDemoState(await demoApi("/api/reset-turn", {}));
+            document.getElementById("moveStatus").textContent =
+                "Turn reset. Characters can move again.";
+        } catch (error) {
+            document.getElementById("moveStatus").textContent = error.message;
+        }
+    });
+
+    document.getElementById("clearDiceLogs").addEventListener("click", async () => {
+        try {
+            renderDemoState(await demoApi("/api/logs/clear", {}));
+            document.getElementById("diceRollStatus").textContent = "Dice history cleared.";
+        } catch (error) {
+            document.getElementById("diceRollStatus").textContent = error.message;
+        }
+    });
+
+    refreshDemoState();
+    window.setInterval(() => {
+        if (!document.hidden) {
+            refreshDemoState();
+        }
+    }, 5000);

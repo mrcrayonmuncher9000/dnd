@@ -15,7 +15,11 @@
     <nav>
         <div style="display: flex; flex-direction: row; gap: 0.5vw;">
             <i class="fa-solid fa-mountain-city"></i>
-            <a href=""> MinDND Dashboard </a>
+            <a href="../MinDND/index.html"> MinDND Dashboard </a>
+            <a href="../MinDND/index.html"
+                style="color: white; text-decoration: none; padding: 0.5vw 1vw; border: 1px solid #ffffff68; border-radius: 0.3vw;">
+                Open VTT Demo
+            </a>
         </div>
     </nav>
 
@@ -63,12 +67,19 @@
         <div id="GMRoom" class="page">
             <div
                 style="margin: 0 0 0.5vw 0; padding: 1vw; display: flex; flex-direction: row; justify-content: flex-end;">
-                <button class="createButton">
+                <button class="createButton" data-room-type="gm" type="button">
                     Create New Room
                 </button>
+                <form class="roomCreateForm" data-room-type="gm"
+                    style="display: none; flex-direction: row; gap: 0.5vw; align-items: center;">
+                    <input name="roomName" type="text" maxlength="80" placeholder="New room name" required>
+                    <button type="submit">Create</button>
+                    <button type="button" class="cancelRoomCreation">Cancel</button>
+                    <span class="roomCreateStatus" role="status" aria-live="polite"></span>
+                </form>
             </div>
 
-            <div class="cardsgridContainer">
+            <div class="cardsgridContainer" id="gmRoomGrid">
 
                 <div class="cardContainer">
                     <div class="cardImage">
@@ -207,12 +218,19 @@
 
             <div
                 style="margin: 0 0 0.5vw 0; padding: 1vw; display: flex; flex-direction: row; justify-content: flex-end;">
-                <button class="createButton">
+                <button class="createButton" data-room-type="encounter" type="button">
                     Create New Room
                 </button>
+                <form class="roomCreateForm" data-room-type="encounter"
+                    style="display: none; flex-direction: row; gap: 0.5vw; align-items: center;">
+                    <input name="roomName" type="text" maxlength="80" placeholder="New room name" required>
+                    <button type="submit">Create</button>
+                    <button type="button" class="cancelRoomCreation">Cancel</button>
+                    <span class="roomCreateStatus" role="status" aria-live="polite"></span>
+                </form>
             </div>
 
-            <div class="cardsgridContainer">
+            <div class="cardsgridContainer" id="playerRoomGrid">
 
                 <div class="cardContainer">
                     <div class="cardImage">
