@@ -1,0 +1,187 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 0.6vw;
+    font-weight: bold;
+}
+
+body {
+    background: linear-gradient(to bottom, #151515, #151515) no-repeat center center fixed;
+}
+
+nav svg {
+    font-size: 1vw;
+}
+
+nav {
+    margin: 0;
+    padding: 0.7vw 1.5vw;
+
+    border-bottom: solid 0.1vw rgba(255, 46, 255, 0.335);
+    background-color: #000000;
+    color: white;
+
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+}
+
+nav a {
+    font-size: 1vw;
+    text-decoration: none;
+
+    background: linear-gradient(
+        to right,
+        #ffffff,
+        #f58aff
+    );
+
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: white;
+
+    align-self: center;
+}
+
+section {
+    margin: 0;
+    padding: 1vw 2vw;
+}
+
+.accountProfile {
+    margin: 0;
+    padding: 0;
+    width: 4vw;
+    height: 4vw;
+
+
+    border-radius: 10%;
+    background-color: white;
+}
+
+.accountCard {
+    margin: 0;
+    padding: 1vw 2vw;
+    width: fit-content;
+
+    border-radius: 0.5vw;
+    border: solid 0.1vw #ffffff95;
+    background-color: #000000;
+    color: white;
+}
+
+.accountInformation {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5vw;
+}
+
+.accountInformation input {
+    padding: 0.4vw 1vw;
+    width: 15vw;
+
+    border-radius: 0.2vw;
+    font-weight: lighter;
+}
+
+.navChoose {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5vw;
+}
+
+.navChoose button {
+    padding: 0.5vw 1vw;
+
+    border-radius: 0.4vw;
+    border: solid 0.1vw #ffffff68;
+    background-color: black;
+    color: white;
+
+    cursor: pointer;
+}
+
+.navChoose button:hover {
+    background-color: rgb(34, 34, 34);
+}
+
+.hr {
+    width: 100%;
+    height: 0.1vw;
+
+    background-color: rgba(255, 255, 255, 0.092);
+}
+
+.page {
+    color: white;
+}
+
+.createButton {
+    padding: 0.5vw 1vw;
+
+    border: none;
+    border-radius: 0.3vw;
+    background-color: rgb(202, 202, 202);
+
+    cursor: pointer;
+}
+
+.cardsgridContainer {
+    display: grid;
+    grid-template-columns: repeat(5, auto);
+    gap: 1vw;
+    justify-content: start;
+}
+
+.cardContainer {
+    margin: 0;
+    padding: 0;
+    width: fit-content;
+    height: fit-content;
+
+    overflow: hidden;
+
+    border-radius: 0.5vw;
+}
+
+.cardImage {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 9vw;
+
+    background-color: white;
+}
+
+.cardTitle {
+    margin: 0;
+    padding: 0.5vw 1vw;
+
+    background-color: black;
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cardTitle p {
+    width: 10vw;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.cardTitle button {
+    padding: 0.3vw;
+
+    border-radius: 0.3vw;
+    border: solid 0.1vw #ffffff80;
+    background-color: #151515;
+    color: white;
+}
