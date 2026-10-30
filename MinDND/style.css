@@ -154,7 +154,7 @@ body {
     margin: 0;
     padding: 0 0 0.3vw 0;
     width: fit-content;
-    height: fit-content;
+    height: auto;
     position: fixed;
 
     background-color: #000000a9;
@@ -227,7 +227,7 @@ body {
 
 .memberName {
     margin: 0;
-    padding: 0.5vw;
+    padding: 0.5vw 0.7vw;
     width: 100%;
 
     border-radius: 0.3vw;
@@ -235,14 +235,161 @@ body {
 
     display: grid;
     grid-template-columns: repeat(2, auto);
-    gap: 0.5vw;
-    justify-content: space-between;
+    gap: 0.6vw;
+    justify-content: start;
     align-items: center;
 }
 
-#diceRoller {
-    top: 3vw;
-    left: 10vw;
+.memberName p {
+    font-weight: lighter;
+}
+
+
+.contentContainer {
+    margin: 0;
+    padding: 0;
+    height: 20vw;
+
+    overflow: scroll;
+}
+
+.chatUser {
+    margin: 0;
+    padding: 0.5vw 0.9vw;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    gap: 0.5vw;
+    justify-content: flex-end;
+    align-items: flex-end;
+    align-items: flex-end;
+}
+
+.chatOther {
+    margin: 0;
+    padding: 0.5vw 0.9vw;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    gap: 0.5vw;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-items: flex-start;
+}
+
+.chatBox {
+    padding: 0.5vw 0.7vw;
+    min-width: fit-content;
+    max-width: 15vw;
+
+    border-radius: 0.5vw;
+    border-top-right-radius: 0;
+    background-color: black;
+
+}
+
+#cbOther {
+    border-top-right-radius: 0.5vw;
+    border-top-left-radius: 0;
+}
+
+.chatboxSection {
+    margin: 0;
+    padding: 0.5vw;
+
+    background-color: #080808;
+
+    display: flex;
+    flex-direction: row;
+    gap: 0.5vw;
+}
+
+.chatboxSection input {
+    margin: 0;
+    padding: 0.3vw;
+    width: 100%;
+
+    border-radius: 0.3vw;
+}
+
+.chatboxSection button {
+    margin: 0;
+    padding: 0.1vw;
+
+    border-radius: 0.3vw;
+    border: solid 0.1vw #ffffff76;
+    background-color: #212121;
+    color: white;
+
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.chatboxSection button:hover {
+    border: solid 0.1vw #ffffffb1;
+    background-color: #040404;
+} 
+
+.chatboxSection svg {
+    font-size: 0.8vw;
+}
+
+.journalnav {
+    margin: 0;
+    padding: 0;
+    min-width: 15vw;
+
+    display: flex;
+    flex-direction: row;
+    gap: 0.5vw;
+}
+
+.journalContent {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5vw;
+}
+
+.journalEntry {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3vw;
+}
+
+.journalEntry p {
+    margin: 0;
+    padding: 0.5vw 0.9vw;
+
+    font-weight: lighter;
+    border-radius: 0.3vw;
+    background-color: black;
+
+    cursor: pointer;
+}
+
+.journalEntry p:hover {
+    text-decoration: underline;
+}
+
+.journalFolder {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5vw;
+}
+
+.journalFolder button {
+    margin: 0;
+    padding: 0.3vw;
+
+    border: solid 0.1vw #8a8a8a;
+    border-radius: 0.3vw;
+    background-color: #0e0d0d;
+    color: white;
+
+    cursor: pointer;
 }
 
 .diceButton {
@@ -259,11 +406,6 @@ body {
 
     font-weight: 500;
     font-style: italic;
-}
-
-#msPlayer {
-    top: 3vw;
-    left: 12vw;
 }
 
 .audioSlider {
@@ -453,7 +595,7 @@ body {
     justify-content: space-between;
 }
 
-nav {
+.assetNav {
     margin: 0;
     padding: 0;
     width: 50vw;
