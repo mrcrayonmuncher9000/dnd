@@ -13,6 +13,11 @@
 
 <body>
 
+    <div id="campaignBanner"
+        style="margin: 0; padding: 0.45vw 1vw; background-color: #111111; color: white; text-align: center;">
+        Loading campaign state...
+    </div>
+
     <div id="controlBar">
 
         <span class="contBG" id="mainBar">
@@ -820,7 +825,7 @@
             <div class="header">
                 <div style="display: flex; flex-direction: row; gap: 0.4vw;">
                     <i class="fa-solid fa-address-book"></i>
-                    <p> Camapaign Party </p>
+                    <p> Campaign Party </p>
                 </div>
                 <div style="display: flex; flex-direction: row; gap: 0.3vw;">
                     <button class="minBtn" class="minBtn" aria-label="Minimize window"> <i
@@ -841,36 +846,10 @@
                         <p> Chandler The Siamese | GM </p>
                     </div>
 
-                    <p> Players </p>
+                    <p> Party &amp; Encounter </p>
 
-                    <div
+                    <div id="partyCharacterList"
                         style="margin: 0 0 0.5vw 0; height: 10vw; overflow: scroll; display: flex; flex-direction: column; gap: 0.5vw; justify-content: start; align-items: center; align-content: center;">
-
-                        <div class="memberName">
-                            <div class="memberPhoto"></div>
-                            <p> Alt Elfor </p>
-                        </div>
-
-                        <div class="memberName">
-                            <div class="memberPhoto"></div>
-                            <p> MiaMiaOG </p>
-                        </div>
-
-                        <div class="memberName">
-                            <div class="memberPhoto"></div>
-                            <p> Hu Ion Bard </p>
-                        </div>
-
-                        <div class="memberName">
-                            <div class="memberPhoto"></div>
-                            <p> LiveLoveLaufey </p>
-                        </div>
-
-                        <div class="memberName">
-                            <div class="memberPhoto"></div>
-                            <p> Gin </p>
-                        </div>
-
                     </div>
 
                     <div
@@ -1128,14 +1107,14 @@
                         <div
                             style="display: grid; grid-template-columns: repeat(2, auto); gap: 0.5vw; align-items: center; justify-content: space-between;">
                             <label>Number of Rolls:</label>
-                            <input type="number" name="diceCount" value="1" min="1"
+                            <input id="diceQuantity" type="number" name="diceCount" value="1" min="1" max="100"
                                 style="padding: 0.5vw 0.4vw; max-width: 3vw; border-radius: 0.3vw; border: none; background-color: black; color: white; font-weight: 500;">
                         </div>
 
                         <div
                             style="display: grid; grid-template-columns: repeat(2, auto); gap: 0.5vw; align-items: center; justify-content: space-between;">
                             <label>Ability Modifier:</label>
-                            <input type="number" name="diceCount" value="0"
+                            <input id="diceModifier" type="number" name="diceModifier" value="0" min="-100" max="100"
                                 style="padding: 0.5vw 0.4vw; max-width: 3vw; border-radius: 0.3vw; border: none; background-color: black; color: white; font-weight: 500;">
                         </div>
 
@@ -1147,25 +1126,26 @@
                         <div
                             style=" display: grid; grid-template-columns: repeat(2, auto); gap: 0.5vw; align-items: center; justify-content: space-between;">
                             <label>Attributes:</label>
-                            <select
+                            <select id="diceAttribute"
                                 style="padding: 0.5vw 0.4vw; max-width: 6.3vw; border-radius: 0.3vw; border: none; background-color: black; color: white; font-weight: 500; cursor: pointer;">
-                                <option> Strength (STR) </option>
-                                <option> Dexterity (DEX) </option>
-                                <option> Constitution (CON) </option>
-                                <option> Intelligence (INT) </option>
-                                <option> Wisdom (WIS) </option>
-                                <option> Charisma (CHA) </option>
+                                <option value="None">No attribute</option>
+                                <option value="Strength">Strength (STR)</option>
+                                <option value="Dexterity">Dexterity (DEX)</option>
+                                <option value="Constitution">Constitution (CON)</option>
+                                <option value="Intelligence">Intelligence (INT)</option>
+                                <option value="Wisdom">Wisdom (WIS)</option>
+                                <option value="Charisma">Charisma (CHA)</option>
                             </select>
                         </div>
 
                         <div
                             style="display: grid; grid-template-columns: repeat(2, auto); gap: 0.5vw; align-items: center; justify-content: space-between;">
                             <label>Advantage:</label>
-                            <select
+                            <select id="diceAdvantage"
                                 style="padding: 0.5vw 0.4vw; max-width: 10vw; border-radius: 0.3vw; border: none; background-color: black; color: white; font-weight: 500; cursor: pointer;">
-                                <option> None </option>
-                                <option> Advantaged </option>
-                                <option> Disadvantaged </option>
+                                <option value="None">None</option>
+                                <option value="Advantage">Advantage</option>
+                                <option value="Disadvantage">Disadvantage</option>
                             </select>
                         </div>
 
@@ -1176,13 +1156,16 @@
                 <div style="margin: 0; padding: 1.5vw 0.9vw; display: flex; flex-direction: column; gap: 0.7vw;">
                     <div
                         style="width: auto; display: grid; grid-template-columns: repeat(2, auto); justify-content: space-between;">
-                        <button
+                        <button id="resetDice" type="button"
                             style="margin: 0; padding: 0.4vw 0.5vw; display: flex; flex-direction: row; gap: 0.5vw; cursor: pointer;">Reset
                             Dice <i class="fa-solid fa-rotate"></i> </button>
-                        <button
+                        <button id="rollDice" type="button"
                             style="margin: 0; padding: 0.4vw 0.5vw; display: flex; flex-direction: row; gap: 0.5vw; cursor: pointer;">Roll
                             Dice <i class="fa-solid fa-dice"></i></button>
                     </div>
+                    <label for="diceCharacter">Roll as</label>
+                    <select id="diceCharacter"></select>
+                    <p id="diceRollStatus" role="status" aria-live="polite"></p>
                     <button
                         style="margin: 0; padding: 0.4vw 0.5vw; width: fit-content; border-radius: 0.3vw; background-color: black; color: white; display: flex; flex-direction: row; gap: 0.5vw; cursor: pointer;">
                         Add to Quick Action Tab <i class="fa-regular fa-square-plus"></i> </button>
@@ -1196,17 +1179,12 @@
                         <p> Dice Logs: </p>
                     </div>
 
-                    <div
+                    <div id="diceLogList" aria-live="polite"
                         style="padding: 0.5vw 0; height: 5vw; overflow: scroll; display: flex; flex-direction: column; gap: 0.4vw;">
-                        <p class="diceLog"> 00:00 - Dice History Placholder</p>
-                        <p class="diceLog"> 00:00 - Dice History Placholder</p>
-                        <p class="diceLog"> 00:00 - Dice History Placholder</p>
-                        <p class="diceLog"> 00:00 - Dice History Placholder</p>
-                        <p class="diceLog"> 00:00 - Dice History Placholder</p>
                     </div>
 
                     <div style="display: flex; flex-direction: row; justify-content: flex-end;">
-                        <button
+                        <button id="clearDiceLogs" type="button"
                             style="margin: 0; padding: 0.4vw 0.5vw; width: fit-content; display: flex; flex-direction: row; gap: 0.5vw; cursor: pointer;">
                             Clear History <i class="fa-solid fa-trash-can"></i> </button>
                     </div>

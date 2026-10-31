@@ -1,0 +1,156 @@
+{
+  "campaign": {
+    "id": "campaign-01",
+    "name": "The Shattered Vale",
+    "description": "A frontier keep haunted by missing caravans and a growing shadow beneath the old stone bridge.",
+    "status": "active"
+  },
+  "rooms": [
+    {
+      "id": "room-01",
+      "name": "Hall of the Watch",
+      "description": "The party gathers before the council table while scouts report fresh movement in the valley.",
+      "type": "gm",
+      "characters": [
+        "char-01",
+        "char-02",
+        "char-03"
+      ]
+    },
+    {
+      "id": "room-02",
+      "name": "Moonlit Approach",
+      "description": "The road narrows between bramble and ruin as the night's fog rolls in.",
+      "type": "encounter",
+      "characters": [
+        "char-01",
+        "char-02",
+        "char-04"
+      ]
+    }
+  ],
+  "characters": [
+    {
+      "id": "char-01",
+      "name": "Ariadne",
+      "role": "player",
+      "class_name": "Rogue",
+      "initiative": 18,
+      "health": 18,
+      "position": {
+        "x": 4,
+        "y": 2
+      },
+      "turn_start_position": {
+        "x": 4,
+        "y": 2
+      },
+      "has_moved": false,
+      "attributes": {
+        "Strength": 12,
+        "Dexterity": 18,
+        "Constitution": 14,
+        "Intelligence": 10,
+        "Wisdom": 13,
+        "Charisma": 15
+      }
+    },
+    {
+      "id": "char-02",
+      "name": "Brannok",
+      "role": "player",
+      "class_name": "Fighter",
+      "initiative": 14,
+      "health": 22,
+      "position": {
+        "x": 5,
+        "y": 3
+      },
+      "turn_start_position": {
+        "x": 5,
+        "y": 3
+      },
+      "has_moved": false,
+      "attributes": {
+        "Strength": 17,
+        "Dexterity": 12,
+        "Constitution": 16,
+        "Intelligence": 9,
+        "Wisdom": 10,
+        "Charisma": 11
+      }
+    },
+    {
+      "id": "char-03",
+      "name": "Mira",
+      "role": "npc",
+      "class_name": "Cleric",
+      "initiative": 12,
+      "health": 16,
+      "position": {
+        "x": 6,
+        "y": 2
+      },
+      "turn_start_position": {
+        "x": 6,
+        "y": 2
+      },
+      "has_moved": false,
+      "attributes": {
+        "Strength": 10,
+        "Dexterity": 11,
+        "Constitution": 13,
+        "Intelligence": 12,
+        "Wisdom": 17,
+        "Charisma": 14
+      }
+    },
+    {
+      "id": "char-04",
+      "name": "Ashen Warden",
+      "role": "enemy",
+      "class_name": "Guard",
+      "initiative": 16,
+      "health": 14,
+      "position": {
+        "x": 7,
+        "y": 5
+      },
+      "turn_start_position": {
+        "x": 7,
+        "y": 5
+      },
+      "has_moved": false,
+      "attributes": {
+        "Strength": 15,
+        "Dexterity": 13,
+        "Constitution": 12,
+        "Intelligence": 8,
+        "Wisdom": 10,
+        "Charisma": 9
+      }
+    }
+  ],
+  "maps": [
+    {
+      "id": "map-01",
+      "name": "Vale Road",
+      "source": "builtin",
+      "description": "A narrow road cutting through the bitter valley with ruins on either side."
+    }
+  ],
+  "logs": [
+    {
+      "id": "log-01",
+      "type": "dice",
+      "character_id": "char-01",
+      "message": "Ariadne rolls a Stealth check and the party holds their breath."
+    },
+    {
+      "id": "log-02",
+      "type": "movement",
+      "character_id": "char-02",
+      "message": "Brannok advances to the front of the line and locks his shield."
+    }
+  ]
+}
