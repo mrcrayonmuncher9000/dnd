@@ -179,6 +179,9 @@ function restoreUIPosition(elmnt) {
 
     elmnt.style.left = position.left;
     elmnt.style.top = position.top;
+    if (elmnt.classList.contains("movementRangeWindow")) {
+        elmnt.style.transform = "none";
+    }
 }
 
 let highestZIndex = 1000;
@@ -186,6 +189,11 @@ let highestZIndex = 1000;
 document.querySelectorAll(".popupUI").forEach(popup => {
     restoreUIPosition(popup);
     dragElement(popup);
+});
+
+document.getElementById("openMovementRange").addEventListener("click", () => {
+    openUI("movementRangeWindow");
+    document.getElementById("movementFeet").focus();
 });
 
 function dragElement(elmnt) {
@@ -211,6 +219,9 @@ function dragElement(elmnt) {
         startTop = rect.top;
         dragging = true;
 
+        if (elmnt.classList.contains("movementRangeWindow")) {
+            elmnt.style.transform = "none";
+        }
         elmnt.style.left = `${rect.left}px`;
         elmnt.style.top = `${rect.top}px`;
         elmnt.style.zIndex = ++highestZIndex;
@@ -247,6 +258,10 @@ function dragElement(elmnt) {
     const customMapFile = document.getElementById("customMapFile");
     const customMapDatabaseName = "mindnd-custom-maps";
     let customMapObjectUrls = [];
+    let selectedMapCharacterId = null;
+    let movementFeet = null;
+    const mapWidth = 36;
+    const mapHeight = 24;
 
     function openCustomMapDatabase() {
         return new Promise((resolve, reject) => {
@@ -415,11 +430,17 @@ function dragElement(elmnt) {
             : state.campaign.name;
         document.title = `${state.campaign.name} | MinDND VTT`;
 
+        renderTabletop(state, activeRoom);
+
         const partyList = document.getElementById("partyCharacterList");
         partyList.replaceChildren();
-        state.characters.forEach(character => {
+        const roomCharacters = getRoomCharacters(state, activeRoom);
+        roomCharacters.forEach(character => {
             const member = document.createElement("div");
             member.className = "memberName";
+            member.setAttribute("role", "button");
+            member.setAttribute("tabindex", "0");
+            member.setAttribute("aria-label", `Select ${character.name} for movement`);
             const photo = document.createElement("div");
             photo.className = "memberPhoto";
             photo.textContent = character.name.slice(0, 1);
@@ -429,14 +450,40 @@ function dragElement(elmnt) {
                 `${character.name} | ${character.role} · ${character.class_name} · ` +
                 `(${position.x}, ${position.y})${character.has_moved ? " · moved" : ""}`;
             member.append(photo, details);
+            const selectForMovement = () => {
+                if (character.has_moved) {
+                    document.getElementById("mapMoveStatus").textContent =
+                        `${character.name} has already moved this turn. Reset Turn to move again.`;
+                    return;
+                }
+                selectedMapCharacterId = character.id;
+                movementFeet = null;
+                document.getElementById("movementFeet").value = "";
+                renderTabletop(state, activeRoom);
+                openUI("movementRangeWindow");
+                document.getElementById("movementFeet").focus();
+            };
+            member.addEventListener("click", selectForMovement);
+            member.addEventListener("keydown", event => {
+                if (event.key === "Enter" || event.key === " ") {
+                    event.preventDefault();
+                    selectForMovement();
+                }
+            });
             partyList.append(member);
         });
 
         ["moveCharacter", "diceCharacter"].forEach(selectId => {
             const select = document.getElementById(selectId);
+            if (!select) {
+                return;
+            }
             const previousValue = select.value;
             select.replaceChildren();
-            state.characters.forEach(character => {
+            const availableCharacters = selectId === "diceCharacter"
+                ? state.characters
+                : roomCharacters;
+            availableCharacters.forEach(character => {
                 const option = document.createElement("option");
                 option.value = character.id;
                 option.textContent = character.name;
@@ -446,7 +493,7 @@ function dragElement(elmnt) {
                 }
                 select.append(option);
             });
-            if (state.characters.some(character => character.id === previousValue)) {
+            if (availableCharacters.some(character => character.id === previousValue)) {
                 select.value = previousValue;
             }
         });
@@ -466,6 +513,76 @@ function dragElement(elmnt) {
                 line.textContent = entry.message;
                 diceLogs.append(line);
             });
+        }
+    }
+
+    function getRoomCharacters(state, room) {
+        const roomCharacterIds = room?.characters || [];
+        const characters = roomCharacterIds.length
+            ? state.characters.filter(character => roomCharacterIds.includes(character.id))
+            : state.characters.filter(character => character.role === "player");
+        return characters;
+    }
+
+    function renderTabletop(state, room) {
+        const tokenLayer = document.getElementById("mapTokens");
+        const rangeCircle = document.getElementById("movementRangeCircle");
+        const status = document.getElementById("mapMoveStatus");
+        const characters = getRoomCharacters(state, room);
+        tokenLayer.replaceChildren();
+
+        if (!characters.some(character =>
+            character.id === selectedMapCharacterId && !character.has_moved
+        )) {
+            selectedMapCharacterId = characters.find(character => !character.has_moved)?.id || null;
+        }
+
+        const selectedCharacter = characters.find(
+            character => character.id === selectedMapCharacterId
+        );
+        if (selectedCharacter && movementFeet !== null) {
+            const start = selectedCharacter.turn_start_position || selectedCharacter.position;
+            rangeCircle.setAttribute("cx", String(start.x + 0.5));
+            rangeCircle.setAttribute("cy", String(start.y + 0.5));
+            rangeCircle.setAttribute("r", String(movementFeet));
+            rangeCircle.style.display = "block";
+        } else {
+            rangeCircle.style.display = "none";
+        }
+
+        characters.forEach(character => {
+            const token = document.createElement("button");
+            token.type = "button";
+            token.className = `mapToken ${character.role}`;
+            token.classList.toggle("selected", character.id === selectedMapCharacterId);
+            token.style.left = `${((character.position.x + 0.5) / mapWidth) * 100}%`;
+            token.style.top = `${((character.position.y + 0.5) / mapHeight) * 100}%`;
+            token.textContent = character.name.slice(0, 1);
+            token.title = `${character.name} · ${character.role} · (${character.position.x}, ${character.position.y})${character.has_moved ? " · moved this turn" : ""}`;
+            token.setAttribute("aria-label", token.title);
+            token.disabled = character.has_moved;
+            token.addEventListener("click", event => {
+                event.stopPropagation();
+                selectedMapCharacterId = character.id;
+                movementFeet = null;
+                document.getElementById("movementFeet").value = "";
+                renderTabletop(state, room);
+                status.textContent = `${character.name} selected. Enter a movement range up to 35 feet.`;
+                openUI("movementRangeWindow");
+                document.getElementById("movementFeet").focus();
+            });
+            tokenLayer.append(token);
+        });
+
+        if (characters.length === 0) {
+            status.textContent = "No player characters are assigned to this room yet.";
+        } else {
+            const selected = characters.find(character => character.id === selectedMapCharacterId);
+            status.textContent = selected
+                ? movementFeet === null
+                    ? `${selected.name} selected. Enter a movement range up to 35 feet, then click a destination.`
+                    : `${selected.name}: ${movementFeet} ft range shown from the turn-start square. Click an unoccupied square inside it. Each square counts as 1 foot.`
+                : "All characters have moved this turn. Reset Turn to move again.";
         }
     }
 
@@ -523,31 +640,87 @@ function dragElement(elmnt) {
         document.getElementById("diceRollStatus").textContent = "";
     });
 
-    document.getElementById("moveForm").addEventListener("submit", async event => {
+    document.getElementById("movementRangeForm").addEventListener("submit", event => {
         event.preventDefault();
-        const status = document.getElementById("moveStatus");
+        const input = document.getElementById("movementFeet");
+        const feet = Number(input.value);
+        const character = lastDemoState?.characters.find(
+            item => item.id === selectedMapCharacterId
+        );
+        const status = document.getElementById("mapMoveStatus");
+
+        if (!Number.isInteger(feet) || feet < 1 || feet > 35) {
+            status.textContent = "Movement range must be a whole number from 1 to 35 feet.";
+            return;
+        }
+        if (!character || character.has_moved) {
+            status.textContent = "Select a character that has not moved this turn.";
+            return;
+        }
+
+        movementFeet = feet;
+        renderTabletop(lastDemoState, stateRoom(lastDemoState));
+        closeUI("movementRangeWindow");
+    });
+
+    function stateRoom(state) {
+        const requestedRoom = new URLSearchParams(window.location.search).get("room");
+        return state.rooms.find(room => room.id === requestedRoom) || state.rooms[0];
+    }
+
+    document.getElementById("tabletopMap").addEventListener("click", async event => {
+        if (!lastDemoState || !selectedMapCharacterId) {
+            return;
+        }
+        if (movementFeet === null) {
+            document.getElementById("mapMoveStatus").textContent =
+                "Enter a movement range and select Show Range before choosing a destination.";
+            return;
+        }
+
+        const bounds = event.currentTarget.getBoundingClientRect();
+        const map = event.currentTarget;
+        const x = Math.floor(
+            ((event.clientX - bounds.left - map.clientLeft) / map.clientWidth) * mapWidth
+        );
+        const y = Math.floor(
+            ((event.clientY - bounds.top - map.clientTop) / map.clientHeight) * mapHeight
+        );
+        const status = document.getElementById("mapMoveStatus");
+
         try {
             const state = await demoApi("/api/move", {
-                character_id: document.getElementById("moveCharacter").value,
-                x: Number(document.getElementById("moveX").value),
-                y: Number(document.getElementById("moveY").value)
+                character_id: selectedMapCharacterId,
+                x,
+                y,
+                max_distance: movementFeet
             });
+            movementFeet = null;
+            document.getElementById("movementFeet").value = "";
             renderDemoState(state);
-            status.textContent = "Move saved to the campaign state.";
         } catch (error) {
             status.textContent = error.message;
         }
     });
 
-    document.getElementById("resetTurn").addEventListener("click", async () => {
+    async function resetMapTurn() {
         try {
             renderDemoState(await demoApi("/api/reset-turn", {}));
-            document.getElementById("moveStatus").textContent =
-                "Turn reset. Characters can move again.";
+            movementFeet = null;
+            document.getElementById("movementFeet").value = "";
+            renderTabletop(lastDemoState, stateRoom(lastDemoState));
+            document.getElementById("mapMoveStatus").textContent =
+                "Turn reset. Select a character, enter a movement range, then click a destination.";
         } catch (error) {
-            document.getElementById("moveStatus").textContent = error.message;
+            document.getElementById("mapMoveStatus").textContent = error.message;
         }
-    });
+    }
+
+    document.getElementById("resetMapTurn").addEventListener("click", resetMapTurn);
+    const existingResetTurn = document.getElementById("resetTurn");
+    if (existingResetTurn) {
+        existingResetTurn.addEventListener("click", resetMapTurn);
+    }
 
     document.getElementById("clearDiceLogs").addEventListener("click", async () => {
         try {

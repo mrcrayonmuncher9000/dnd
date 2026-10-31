@@ -49,8 +49,8 @@ def build_demo_state() -> Dict[str, Any]:
                 "class_name": "Rogue",
                 "initiative": 18,
                 "health": 18,
-                "position": {"x": 4, "y": 2},
-                "turn_start_position": {"x": 4, "y": 2},
+                "position": {"x": 14, "y": 11},
+                "turn_start_position": {"x": 14, "y": 11},
                 "has_moved": False,
                 "attributes": {
                     "Strength": 12,
@@ -68,8 +68,8 @@ def build_demo_state() -> Dict[str, Any]:
                 "class_name": "Fighter",
                 "initiative": 14,
                 "health": 22,
-                "position": {"x": 5, "y": 3},
-                "turn_start_position": {"x": 5, "y": 3},
+                "position": {"x": 16, "y": 13},
+                "turn_start_position": {"x": 16, "y": 13},
                 "has_moved": False,
                 "attributes": {
                     "Strength": 17,
@@ -87,8 +87,8 @@ def build_demo_state() -> Dict[str, Any]:
                 "class_name": "Cleric",
                 "initiative": 12,
                 "health": 16,
-                "position": {"x": 6, "y": 2},
-                "turn_start_position": {"x": 6, "y": 2},
+                "position": {"x": 18, "y": 10},
+                "turn_start_position": {"x": 18, "y": 10},
                 "has_moved": False,
                 "attributes": {
                     "Strength": 10,
@@ -106,8 +106,8 @@ def build_demo_state() -> Dict[str, Any]:
                 "class_name": "Guard",
                 "initiative": 16,
                 "health": 14,
-                "position": {"x": 7, "y": 5},
-                "turn_start_position": {"x": 7, "y": 5},
+                "position": {"x": 21, "y": 13},
+                "turn_start_position": {"x": 21, "y": 13},
                 "has_moved": False,
                 "attributes": {
                     "Strength": 15,
@@ -125,6 +125,7 @@ def build_demo_state() -> Dict[str, Any]:
                 "name": "Vale Road",
                 "source": "builtin",
                 "description": "A narrow road cutting through the bitter valley with ruins on either side.",
+                "image": "/MinDND/assets/vale-road.svg",
             }
         ],
         "logs": [
@@ -209,7 +210,11 @@ def add_room(state: Dict[str, Any], name: str, room_type: str) -> Dict[str, Any]
         "name": normalized_name,
         "description": "",
         "type": room_type,
-        "characters": [],
+        "characters": [
+            character["id"]
+            for character in state.get("characters", [])
+            if character.get("role") == "player"
+        ],
     }
     state.setdefault("rooms", []).append(room)
     return room
@@ -241,6 +246,8 @@ def can_move_character(state: Dict[str, Any], character_id: str, destination: Di
     character = find_character(state, character_id)
     if character is None:
         raise ValueError(f"Character not found: {character_id}")
+    if not isinstance(max_distance, int) or not 1 <= max_distance <= 35:
+        return False
     if character.get("has_moved", False):
         return False
     x = destination.get("x")

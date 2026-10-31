@@ -28,10 +28,11 @@ py .\run_demo.py
 - Dashboard room cards load from the campaign API.
 - Create rooms from either dashboard tab and open them directly in the VTT.
 - The VTT party list and room banner load from the same state.
+- The VTT includes the built-in Vale Road map, draws room characters on its grid, and saves click-to-move actions through the campaign API. Enter 1–35 feet and select **Show Range** to preview movement from the character's turn-start square before choosing a destination.
 - Dice rolls use `Gin/dice_engine.py`, are logged, and persist to the JSON state.
 - Movement validates the 36-by-24 grid, occupied destinations, and the 35-foot turn limit, then records movement in the state.
 - **Next Turn** resets movement availability.
-- Custom map uploads remain browser-local in IndexedDB.
+- Custom map uploads remain browser-local in IndexedDB; they are gallery previews and are not selectable as the active tabletop map yet.
 
 The server is intended for a local presentation demo, not public deployment or multi-user production hosting.
 

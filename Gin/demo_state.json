@@ -38,12 +38,12 @@
       "initiative": 18,
       "health": 18,
       "position": {
-        "x": 4,
-        "y": 2
+        "x": 15,
+        "y": 7
       },
       "turn_start_position": {
-        "x": 4,
-        "y": 2
+        "x": 15,
+        "y": 7
       },
       "has_moved": false,
       "attributes": {
@@ -63,12 +63,12 @@
       "initiative": 14,
       "health": 22,
       "position": {
-        "x": 5,
-        "y": 3
+        "x": 21,
+        "y": 9
       },
       "turn_start_position": {
-        "x": 5,
-        "y": 3
+        "x": 21,
+        "y": 9
       },
       "has_moved": false,
       "attributes": {
@@ -88,12 +88,12 @@
       "initiative": 12,
       "health": 16,
       "position": {
-        "x": 6,
-        "y": 2
+        "x": 7,
+        "y": 3
       },
       "turn_start_position": {
-        "x": 6,
-        "y": 2
+        "x": 7,
+        "y": 3
       },
       "has_moved": false,
       "attributes": {
@@ -136,7 +136,8 @@
       "id": "map-01",
       "name": "Vale Road",
       "source": "builtin",
-      "description": "A narrow road cutting through the bitter valley with ruins on either side."
+      "description": "A narrow road cutting through the bitter valley with ruins on either side.",
+      "image": "/MinDND/assets/vale-road.svg"
     }
   ],
   "logs": [
@@ -151,6 +152,30 @@
       "type": "movement",
       "character_id": "char-02",
       "message": "Brannok advances to the front of the line and locks his shield."
+    },
+    {
+      "id": "log-3",
+      "type": "movement",
+      "character_id": "char-01",
+      "message": "Ariadne moves to (18, 11)."
+    },
+    {
+      "id": "log-4",
+      "type": "movement",
+      "character_id": "char-03",
+      "message": "Mira moves to (7, 3)."
+    },
+    {
+      "id": "log-5",
+      "type": "movement",
+      "character_id": "char-01",
+      "message": "Ariadne moves to (15, 7)."
+    },
+    {
+      "id": "log-6",
+      "type": "movement",
+      "character_id": "char-02",
+      "message": "Brannok moves to (21, 9)."
     }
   ]
 }

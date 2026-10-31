@@ -46,7 +46,10 @@
         </span>
 
         <span class="contBG" id="toolBar">
-            <button class="controlButton" onclick=""> <i class="fa-solid fa-hand"></i> </button>
+            <button class="controlButton" type="button" id="openMovementRange"
+                title="Set movement range" aria-label="Set movement range">
+                <i class="fa-solid fa-ruler"></i>
+            </button>
             <button class="controlButton" onclick=""> <i class="fa-solid fa-object-ungroup"></i> </button>
             <button class="controlButton" onclick=""> <i class="fa-solid fa-cloud"></i> </button>
             <button class="controlButton" onclick=""> <i class="fa-solid fa-burst"></i> </button>
@@ -57,6 +60,52 @@
             </button>
         </span>
 
+    </div>
+
+    <main id="tabletop">
+        <div class="tabletopHeader">
+            <div>
+                <h1 id="tabletopMapName">The Vale Road</h1>
+                <p>36 × 24 squares · Select a character, set movement range, then choose a destination</p>
+            </div>
+            <button id="resetMapTurn" type="button">Reset Turn</button>
+        </div>
+        <div id="tabletopMap" role="application" aria-label="The Vale Road tactical map">
+            <div id="mapGrid" aria-hidden="true"></div>
+            <svg id="movementRange" viewBox="0 0 36 24" preserveAspectRatio="none" aria-hidden="true">
+                <circle id="movementRangeCircle"></circle>
+            </svg>
+            <div id="mapTokens"></div>
+        </div>
+        <p id="mapMoveStatus" role="status" aria-live="polite">
+            Select a character, enter a movement range, then click a destination square.
+        </p>
+    </main>
+
+    <div class="popupUI movementRangeWindow" id="movementRangeWindow" role="dialog"
+        aria-labelledby="movementRangeTitle" aria-modal="false">
+        <div class="header">
+            <div class="movementWindowTitle">
+                <i class="fa-solid fa-ruler"></i>
+                <p id="movementRangeTitle">Movement Range</p>
+            </div>
+            <div class="movementWindowActions">
+                <button class="clsBtn" type="button" onclick="closeUI('movementRangeWindow')"
+                    aria-label="Close movement range window">×</button>
+            </div>
+        </div>
+        <div class="content movementRangeContent">
+            <form id="movementRangeForm" class="movementRangeControls">
+                <label for="movementFeet">How many feet can this character move?</label>
+                <div class="movementInputRow">
+                    <input id="movementFeet" name="movementFeet" type="number" min="1" max="35"
+                        step="1" placeholder="1–35" required>
+                    <span>ft</span>
+                </div>
+                <button type="submit">Show movement range</button>
+                <p>Choose an unoccupied square inside the circle to move. Maximum: 35 feet.</p>
+            </form>
+        </div>
     </div>
 
     <section class="assetSection">
@@ -324,6 +373,16 @@
                             <p id="customMapStatus" role="status" aria-live="polite"></p>
                         </form>
 
+                        <div class="contentGrid builtinMapGrid">
+                            <article class="cardContainer builtinMapCard">
+                                <img class="cardImage customMapPreview"
+                                    src="assets/vale-road.svg" alt="Illustrated preview of The Vale Road map">
+                                <div class="cardHeader">
+                                    <p>The Vale Road · Included</p>
+                                    <span>On tabletop</span>
+                                </div>
+                            </article>
+                        </div>
                         <div class="contentGrid" id="customMapGrid" aria-live="polite">
                             <p class="mapEmptyState">Your custom maps will appear here.</p>
                         </div>

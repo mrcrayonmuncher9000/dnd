@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 960" role="img" aria-labelledby="title description">
+  <title id="title">The Vale Road</title>
+  <desc id="description">A winding trail crosses a misty valley between pine woods, a stream, and an old stone ruin.</desc>
+  <defs>
+    <linearGradient id="ground" x2="0" y2="1">
+      <stop stop-color="#657456"/>
+      <stop offset=".48" stop-color="#71805d"/>
+      <stop offset="1" stop-color="#465b49"/>
+    </linearGradient>
+    <linearGradient id="road" x2="0" y2="1">
+      <stop stop-color="#c1a878"/>
+      <stop offset="1" stop-color="#8f7752"/>
+    </linearGradient>
+    <linearGradient id="water" x2="1" y2="1">
+      <stop stop-color="#6c9690"/>
+      <stop offset="1" stop-color="#354f54"/>
+    </linearGradient>
+    <pattern id="grass" width="72" height="62" patternUnits="userSpaceOnUse">
+      <path d="M12 47l5-12m3 14-1-8m34 2 6-14m2 17 2-9" stroke="#b3b58a" stroke-opacity=".22" stroke-width="3" stroke-linecap="round"/>
+      <circle cx="40" cy="21" r="2" fill="#d2c896" fill-opacity=".26"/>
+    </pattern>
+    <g id="pine">
+      <path d="M0 50 22 8l22 42H31l13 22H0l13-22Z" fill="#263e35"/>
+      <path d="M18 72h8v13h-8z" fill="#574b38"/>
+      <path d="m22 13 13 28H9z" fill="#45604a" opacity=".8"/>
+    </g>
+    <g id="rock">
+      <path d="m0 22 8-17 17-5 15 10 5 15-12 11H10Z" fill="#85816c"/>
+      <path d="m8 5 7 11 15-6" fill="none" stroke="#c0b79a" stroke-opacity=".5" stroke-width="3"/>
+    </g>
+  </defs>
+  <rect width="1440" height="960" fill="url(#ground)"/>
+  <path d="M0 0h1440v165c-204 73-345 41-519 94-194 59-352 18-511 61C246 364 106 337 0 390Z" fill="#879078" opacity=".62"/>
+  <path d="M0 0h1440v87c-233 87-383 28-584 91-208 65-399 42-548 91C190 304 79 284 0 322Z" fill="#a4a38a" opacity=".35"/>
+  <rect width="1440" height="960" fill="url(#grass)"/>
+
+  <path d="M1150-30c-59 143-129 202-156 313s-1 178-87 280-170 124-209 219 9 145 68 208H910c-74-90-88-143-36-220s178-129 251-224 28-188 64-285 111-184 169-291Z" fill="url(#water)" opacity=".92"/>
+  <path d="M1161-24c-61 152-139 209-165 321s-2 176-89 278-169 123-208 219" fill="none" stroke="#bad0b4" stroke-opacity=".42" stroke-width="9"/>
+  <path d="M797 773c-26 72-9 135 45 217" fill="none" stroke="#b6cec0" stroke-opacity=".34" stroke-width="7"/>
+
+  <path d="M-70 664c147-13 258-90 384-119s210 28 337-27 188-179 298-189 170 46 264 21 164-94 296-87l-14 145c-95-4-158 55-242 83s-185-13-260 20-159 150-288 202-250 20-351 51S179 854 38 857Z" fill="#635a43" opacity=".54"/>
+  <path d="M-70 638c150-12 254-88 378-116s207 29 335-27 187-176 298-186 167 44 260 19 164-92 295-84l-13 91c-113-5-181 66-277 91s-177-9-253 25-164 146-282 193-234 16-343 49S178 795 40 803Z" fill="url(#road)" stroke="#d1bc8d" stroke-width="7"/>
+  <path d="M-42 673c147-13 254-89 377-115s208 28 337-28 185-173 294-184 166 44 259 18 164-89 292-81" fill="none" stroke="#e1cf9f" stroke-opacity=".55" stroke-width="5" stroke-dasharray="16 24"/>
+
+  <g opacity=".95">
+    <use href="#pine" x="48" y="58" transform="translate(48 58) scale(1.05)"/>
+    <use href="#pine" transform="translate(154 38) scale(1.3)"/>
+    <use href="#pine" transform="translate(286 92) scale(.9)"/>
+    <use href="#pine" transform="translate(388 20) scale(1.18)"/>
+    <use href="#pine" transform="translate(512 80) scale(1.1)"/>
+    <use href="#pine" transform="translate(637 34) scale(1.28)"/>
+    <use href="#pine" transform="translate(1337 46) scale(1.3)"/>
+    <use href="#pine" transform="translate(1256 143) scale(.95)"/>
+    <use href="#pine" transform="translate(1370 198) scale(1.12)"/>
+    <use href="#pine" transform="translate(24 376) scale(1.25)"/>
+    <use href="#pine" transform="translate(95 471) scale(.95)"/>
+    <use href="#pine" transform="translate(37 829) scale(1.2)"/>
+    <use href="#pine" transform="translate(156 875) scale(.92)"/>
+    <use href="#pine" transform="translate(1265 836) scale(1.18)"/>
+    <use href="#pine" transform="translate(1352 752) scale(1.3)"/>
+    <use href="#pine" transform="translate(1191 901) scale(.95)"/>
+    <use href="#pine" transform="translate(1078 869) scale(1.15)"/>
+    <use href="#pine" transform="translate(1410 500) scale(1.2)"/>
+  </g>
+
+  <g transform="translate(998 200)">
+    <path d="M0 43 118 0l120 43v11H0Z" fill="#574b3c"/>
+    <path d="M15 54h202v134H15z" fill="#77715e" stroke="#c4b995" stroke-width="5"/>
+    <path d="M30 54v-35l30-13 31 13v35m56 0V12l29-13 30 13v42" fill="#8d846a" stroke="#c4b995" stroke-width="5"/>
+    <path d="M83 188v-57q32-45 65 0v57" fill="#333c35" stroke="#c4b995" stroke-width="5"/>
+    <path d="M37 84h31v29H37zm126 0h31v29h-31z" fill="#35443d"/>
+    <path d="M-7 188h247v20H-7z" fill="#574b3c"/>
+  </g>
+  <g transform="translate(282 340)" opacity=".9">
+    <path d="M0 31 73 0l77 31v10H0Z" fill="#5b503e"/>
+    <path d="M12 41h126v80H12z" fill="#806f52" stroke="#c5b78e" stroke-width="4"/>
+    <path d="M57 121V84q18-24 36 0v37" fill="#344037"/>
+  </g>
+  <g opacity=".65">
+    <use href="#rock" transform="translate(777 183) scale(1.1)"/>
+    <use href="#rock" transform="translate(905 379) scale(.8)"/>
+    <use href="#rock" transform="translate(542 490) scale(.9)"/>
+    <use href="#rock" transform="translate(1214 642) scale(1.2)"/>
+    <use href="#rock" transform="translate(427 806) scale(1.1)"/>
+    <use href="#rock" transform="translate(1073 746) scale(.75)"/>
+  </g>
+
+  <g fill="#c6bd92" fill-opacity=".62">
+    <circle cx="88" cy="239" r="5"/><circle cx="214" cy="450" r="4"/>
+    <circle cx="690" cy="344" r="5"/><circle cx="762" cy="614" r="4"/>
+    <circle cx="377" cy="612" r="5"/><circle cx="1080" cy="468" r="4"/>
+    <circle cx="1312" cy="363" r="5"/><circle cx="958" cy="839" r="4"/>
+  </g>
+  <g transform="translate(1335 60)" fill="#eee4c5" opacity=".86">
+    <path d="M0 44 14 0l14 44-14-10Z"/>
+    <text x="14" y="61" text-anchor="middle" font-family="serif" font-size="17">N</text>
+  </g>
+  <rect x="14" y="14" width="1412" height="932" rx="8" fill="none" stroke="#e8ddba" stroke-opacity=".4" stroke-width="3"/>
+</svg>

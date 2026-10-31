@@ -4,12 +4,293 @@
     padding: 0;
 
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 0.6vw;
+    font-size: clamp(10px, 0.6vw, 14px);
     font-weight: bold;
 }
 
+@media (max-width: 700px) {
+    #controlBar {
+        inset: 0.45rem 0.45rem auto;
+        grid-template-columns: 1fr auto;
+        row-gap: 0.4rem;
+    }
+
+    #controlBar #mainBar {
+        grid-column: 1;
+    }
+
+    #controlBar #assetManager {
+        grid-column: 1 / -1;
+        grid-row: 2;
+        justify-self: start;
+    }
+
+    #controlBar #toolBar {
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+    .tabletopHeader {
+        right: 0.45rem;
+        bottom: 3.4rem;
+    }
+}
+
 body {
-    background: linear-gradient(to bottom, #c2c2c2, #868686) no-repeat center center fixed;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
+    background: #101210;
+}
+
+#tabletop {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    display: grid;
+    place-items: center;
+    width: 100%;
+    height: 100%;
+    color: #fff;
+    pointer-events: none;
+}
+
+.tabletopHeader {
+    position: fixed;
+    top: auto;
+    right: 1rem;
+    bottom: 3.4rem;
+    left: auto;
+    z-index: 2;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.5rem 0.65rem;
+    border-radius: 0.35rem;
+    background: #111c;
+    pointer-events: auto;
+}
+
+.tabletopHeader h1 {
+    font-size: clamp(1rem, 1.4vw, 1.5rem);
+}
+
+.tabletopHeader p,
+#mapMoveStatus {
+    margin-top: 0.25rem;
+    font-size: clamp(0.7rem, 0.85vw, 0.95rem);
+}
+
+.movementRangeControls {
+    display: grid;
+    gap: 0.7rem;
+}
+
+.movementRangeControls label {
+    font-size: 0.9rem;
+}
+
+.movementInputRow {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+#movementFeet {
+    width: 6rem;
+    min-height: 2.2rem;
+    padding: 0.4rem 0.5rem;
+    border: 1px solid #8a8a8a;
+    border-radius: 0.3rem;
+    color: #111;
+    font-size: 1rem;
+}
+
+.movementRangeControls button,
+#resetMapTurn {
+    min-height: 2.2rem;
+    padding: 0.4rem 0.65rem;
+    border: 1px solid #ddd;
+    border-radius: 0.3rem;
+    background: #111e;
+    color: #fff;
+    cursor: pointer;
+}
+
+#resetMapTurn {
+    white-space: nowrap;
+}
+
+#tabletopMap {
+    position: relative;
+    width: 100vw;
+    height: 100dvh;
+    overflow: hidden;
+    border: 2px solid #1f2922;
+    background: #293d32 url("assets/vale-road.svg") center / 100% 100% no-repeat;
+    box-shadow: 0 0 2rem #0008;
+    touch-action: manipulation;
+    pointer-events: auto;
+}
+
+#mapGrid,
+#movementRange,
+#mapTokens {
+    position: absolute;
+    inset: 0;
+}
+
+#movementRange {
+    overflow: visible;
+    pointer-events: none;
+}
+
+#movementRangeCircle {
+    fill: #ffdf57;
+    fill-opacity: 0.24;
+    stroke: #ffe98a;
+    stroke-width: 0.08;
+    stroke-dasharray: 0.18 0.12;
+    vector-effect: non-scaling-stroke;
+}
+
+#mapGrid {
+    background-image:
+        linear-gradient(to right, #e6e4c522 1px, transparent 1px),
+        linear-gradient(to bottom, #e6e4c522 1px, transparent 1px);
+    background-size: 2.7777778% 4.1666667%;
+    pointer-events: none;
+}
+
+.mapToken {
+    position: absolute;
+    display: grid;
+    width: clamp(1.3rem, 3.2vw, 2.8rem);
+    aspect-ratio: 1;
+    place-items: center;
+    transform: translate(-50%, -50%);
+    border: 2px solid #f4edcf;
+    border-radius: 50%;
+    color: #fff;
+    font-size: clamp(0.65rem, 0.9vw, 0.95rem);
+    text-shadow: 0 1px 2px #000;
+    box-shadow: 0 2px 6px #000b;
+    cursor: pointer;
+}
+
+.mapToken.player {
+    background: #237baf;
+}
+
+.mapToken.npc {
+    background: #668f4d;
+}
+
+.mapToken.enemy {
+    background: #a53d36;
+}
+
+.mapToken.selected {
+    outline: 3px solid #ffe27a;
+    outline-offset: 2px;
+    z-index: 1;
+}
+
+#mapMoveStatus {
+    position: fixed;
+    bottom: 0.65rem;
+    left: 50%;
+    z-index: 2;
+    max-width: min(80vw, 48rem);
+    padding: 0.4rem 0.65rem;
+    transform: translateX(-50%);
+    border-radius: 0.3rem;
+    background: #111d;
+    color: #fff;
+    min-height: 1.2em;
+    pointer-events: none;
+}
+
+#campaignBanner {
+    position: fixed;
+    top: 0.55rem;
+    left: 50%;
+    z-index: 1400;
+    width: max-content;
+    max-width: 45vw;
+    transform: translateX(-50%);
+    padding: 0.35rem 0.7rem !important;
+    border-radius: 0.3rem;
+    background: #111d !important;
+    font-size: clamp(0.7rem, 0.9vw, 0.95rem);
+    pointer-events: none;
+}
+
+#controlBar {
+    position: fixed;
+    inset: 0.5rem 0.7rem auto;
+    z-index: 1300;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    column-gap: 0;
+    padding: 0;
+    pointer-events: none;
+}
+
+#controlBar > span {
+    width: fit-content;
+    padding: 0.5rem 0.65rem;
+    box-shadow: 0 2px 10px #0005;
+    pointer-events: auto;
+}
+
+#assetManager {
+    grid-column: 2;
+}
+
+#toolBar {
+    grid-column: 3;
+    justify-self: end;
+}
+
+.movementRangeWindow {
+    z-index: 2000;
+    top: 50%;
+    left: 50%;
+    width: min(22rem, calc(100vw - 2rem));
+    transform: translate(-50%, -50%);
+}
+
+.movementRangeWindow .header {
+    align-items: center;
+    padding: 0.7rem 0.8rem;
+}
+
+.movementWindowTitle,
+.movementWindowActions {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.movementWindowTitle p {
+    font-size: 1rem;
+}
+
+.movementWindowActions .clsBtn {
+    padding: 0 0.35rem;
+    font-size: 1.1rem;
+}
+
+.movementRangeContent {
+    padding: 0.9rem;
+}
+
+.movementRangeControls p {
+    font-size: 0.8rem;
+    font-weight: normal;
+    line-height: 1.4;
 }
 
 /* 
@@ -49,7 +330,7 @@ body {
 }
 
 .controlButton svg {
-    font-size: 1vw;
+    font-size: clamp(12px, 1vw, 18px);
 }
 
 .controlButton:hover {
@@ -333,6 +614,15 @@ body {
     gap: 0.6vw;
     justify-content: start;
     align-items: center;
+}
+
+.memberName[role="button"] {
+    cursor: pointer;
+}
+
+.memberName[role="button"]:focus-visible {
+    outline: 2px solid #ffe27a;
+    outline-offset: 2px;
 }
 
 .memberName p {
@@ -775,6 +1065,15 @@ body {
     height: 100%;
     object-fit: cover;
     background-color: #080808;
+}
+
+.builtinMapCard .cardHeader {
+    align-items: center;
+}
+
+.builtinMapCard .cardHeader p,
+.builtinMapCard .cardHeader span {
+    font-size: clamp(0.65rem, 0.75vw, 0.85rem);
 }
 
 .cardContainer {

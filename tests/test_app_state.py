@@ -35,6 +35,7 @@ class AppStateTests(unittest.TestCase):
         room = app_state.add_room(self.state, "  The Old Bridge  ", "encounter")
         self.assertEqual(room["name"], "The Old Bridge")
         self.assertEqual(room["type"], "encounter")
+        self.assertEqual(room["characters"], ["char-01", "char-02"])
         with self.assertRaisesRegex(ValueError, "already exists"):
             app_state.add_room(self.state, "the old bridge", "gm")
         with self.assertRaisesRegex(ValueError, "Room type"):
@@ -46,9 +47,11 @@ class AppStateTests(unittest.TestCase):
         self.assertEqual(character["position"], {"x": 8, "y": 2})
         self.assertTrue(character["has_moved"])
         self.assertFalse(app_state.can_move_character(moved, "char-01", {"x": 9, "y": 2}))
+        self.assertFalse(app_state.can_move_character(self.state, "char-01", {"x": 6, "y": 2}, 1))
+        self.assertFalse(app_state.can_move_character(self.state, "char-01", {"x": 9, "y": 2}, 36))
 
         with self.assertRaisesRegex(ValueError, "invalid"):
-            app_state.move_character(moved, "char-02", 6, 2)
+            app_state.move_character(moved, "char-02", 8, 2)
 
         app_state.reset_turn(moved)
         self.assertTrue(app_state.can_move_character(moved, "char-01", {"x": 9, "y": 2}))
